@@ -1,0 +1,827 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+
+<link href='https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; --title-bar-height:20px; }
+.mac-os-11 { --title-bar-height:28px; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; inset: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; tab-size: 4; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; overflow-wrap: break-word; position: relative; white-space: normal; overflow-x: visible; padding-top: 36px; }
+#write.first-line-indent p { text-indent: 2em; }
+#write.first-line-indent li p, #write.first-line-indent p * { text-indent: 0px; }
+#write.first-line-indent li { margin-left: 2em; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+.typora-export .footnote-line, .typora-export li, .typora-export p { white-space: pre-wrap; }
+.typora-export .task-list-item input { pointer-events: none; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  #write { padding-left: 20px; padding-right: 20px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write li > figure:last-child { margin-bottom: 0.5rem; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
+button, input, select, textarea { color: inherit; font: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+p { line-height: inherit; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 32px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror-linenumber { user-select: none; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-fences-adv-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li blockquote { margin: 1rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
+  #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  .typora-export #write { break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  .is-mac table { break-inside: avoid; }
+  .typora-export-show-outline .typora-export-sidebar { display: none; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
+p > .md-image:only-child { display: inline-block; width: 100%; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+.MathJax_ref { fill: currentcolor; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus, [contenteditable="false"]:active, [contenteditable="false"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); border: none; }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { text-decoration: underline; }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.6; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="flow"] svg, [lang="mermaid"] svg { max-width: 100%; height: auto; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+mark { background: rgb(255, 255, 0); color: rgb(0, 0, 0); }
+.md-html-inline .md-plain, .md-html-inline strong, mark .md-inline-math, mark strong { color: inherit; }
+.md-expand mark .md-meta { opacity: 0.3 !important; }
+mark .md-meta { color: rgb(0, 0, 0); }
+@media print {
+  .typora-export h1, .typora-export h2, .typora-export h3, .typora-export h4, .typora-export h5, .typora-export h6 { break-inside: avoid; }
+}
+.md-diagram-panel .messageText { stroke: none !important; }
+.md-diagram-panel .start-state { fill: var(--node-fill); }
+.md-diagram-panel .edgeLabel rect { opacity: 1 !important; }
+.md-fences.md-fences-math { font-size: 1em; }
+.md-fences-advanced:not(.md-focus) { padding: 0px; white-space: nowrap; border: 0px; }
+.md-fences-advanced:not(.md-focus) { background: inherit; }
+.typora-export-show-outline .typora-export-content { max-width: 1440px; margin: auto; display: flex; flex-direction: row; }
+.typora-export-sidebar { width: 300px; font-size: 0.8rem; margin-top: 80px; margin-right: 18px; }
+.typora-export-show-outline #write { --webkit-flex:2; flex: 2 1 0%; }
+.typora-export-sidebar .outline-content { position: fixed; top: 0px; max-height: 100%; overflow: hidden auto; padding-bottom: 30px; padding-top: 60px; width: 300px; }
+@media screen and (max-width: 1024px) {
+  .typora-export-sidebar, .typora-export-sidebar .outline-content { width: 240px; }
+}
+@media screen and (max-width: 800px) {
+  .typora-export-sidebar { display: none; }
+}
+.outline-content li, .outline-content ul { margin-left: 0px; margin-right: 0px; padding-left: 0px; padding-right: 0px; list-style: none; }
+.outline-content ul { margin-top: 0px; margin-bottom: 0px; }
+.outline-content strong { font-weight: 400; }
+.outline-expander { width: 1rem; height: 1.42857rem; position: relative; display: table-cell; vertical-align: middle; cursor: pointer; padding-left: 4px; }
+.outline-expander::before { content: ""; position: relative; font-family: Ionicons; display: inline-block; font-size: 8px; vertical-align: middle; }
+.outline-item { padding-top: 3px; padding-bottom: 3px; cursor: pointer; }
+.outline-expander:hover::before { content: ""; }
+.outline-h1 > .outline-item { padding-left: 0px; }
+.outline-h2 > .outline-item { padding-left: 1em; }
+.outline-h3 > .outline-item { padding-left: 2em; }
+.outline-h4 > .outline-item { padding-left: 3em; }
+.outline-h5 > .outline-item { padding-left: 4em; }
+.outline-h6 > .outline-item { padding-left: 5em; }
+.outline-label { cursor: pointer; display: table-cell; vertical-align: middle; text-decoration: none; color: inherit; }
+.outline-label:hover { text-decoration: underline; }
+.outline-item:hover { border-color: rgb(245, 245, 245); background-color: var(--item-hover-bg-color); }
+.outline-item:hover { margin-left: -28px; margin-right: -28px; border-left: 28px solid transparent; border-right: 28px solid transparent; }
+.outline-item-single .outline-expander::before, .outline-item-single .outline-expander:hover::before { display: none; }
+.outline-item-open > .outline-item > .outline-expander::before { content: ""; }
+.outline-children { display: none; }
+.info-panel-tab-wrapper { display: none; }
+.outline-item-open > .outline-children { display: block; }
+.typora-export .outline-item { padding-top: 1px; padding-bottom: 1px; }
+.typora-export .outline-item:hover { margin-right: -8px; border-right: 8px solid transparent; }
+.typora-export .outline-expander::before { content: "+"; font-family: inherit; top: -1px; }
+.typora-export .outline-expander:hover::before, .typora-export .outline-item-open > .outline-item > .outline-expander::before { content: "−"; }
+.typora-export-collapse-outline .outline-children { display: none; }
+.typora-export-collapse-outline .outline-item-open > .outline-children, .typora-export-no-collapse-outline .outline-children { display: block; }
+.typora-export-no-collapse-outline .outline-expander::before { content: "" !important; }
+.typora-export-show-outline .outline-item-active > .outline-item .outline-label { font-weight: 700; }
+.md-inline-math-container mjx-container { zoom: 0.95; }
+
+
+.CodeMirror { height: auto; }
+.CodeMirror.cm-s-inner { background: inherit; }
+.CodeMirror-scroll { overflow: auto hidden; z-index: 3; }
+.CodeMirror-gutter-filler, .CodeMirror-scrollbar-filler { background-color: rgb(255, 255, 255); }
+.CodeMirror-gutters { border-right: 1px solid rgb(221, 221, 221); background: inherit; white-space: nowrap; }
+.CodeMirror-linenumber { padding: 0px 3px 0px 5px; text-align: right; color: rgb(153, 153, 153); }
+.cm-s-inner .cm-keyword { color: rgb(119, 0, 136); }
+.cm-s-inner .cm-atom, .cm-s-inner.cm-atom { color: rgb(34, 17, 153); }
+.cm-s-inner .cm-number { color: rgb(17, 102, 68); }
+.cm-s-inner .cm-def { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-variable { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-variable-2 { color: rgb(0, 85, 170); }
+.cm-s-inner .cm-variable-3 { color: rgb(0, 136, 85); }
+.cm-s-inner .cm-string { color: rgb(170, 17, 17); }
+.cm-s-inner .cm-property { color: rgb(0, 0, 0); }
+.cm-s-inner .cm-operator { color: rgb(152, 26, 26); }
+.cm-s-inner .cm-comment, .cm-s-inner.cm-comment { color: rgb(170, 85, 0); }
+.cm-s-inner .cm-string-2 { color: rgb(255, 85, 0); }
+.cm-s-inner .cm-meta { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-qualifier { color: rgb(85, 85, 85); }
+.cm-s-inner .cm-builtin { color: rgb(51, 0, 170); }
+.cm-s-inner .cm-bracket { color: rgb(153, 153, 119); }
+.cm-s-inner .cm-tag { color: rgb(17, 119, 0); }
+.cm-s-inner .cm-attribute { color: rgb(0, 0, 204); }
+.cm-s-inner .cm-header, .cm-s-inner.cm-header { color: rgb(0, 0, 255); }
+.cm-s-inner .cm-quote, .cm-s-inner.cm-quote { color: rgb(0, 153, 0); }
+.cm-s-inner .cm-hr, .cm-s-inner.cm-hr { color: rgb(153, 153, 153); }
+.cm-s-inner .cm-link, .cm-s-inner.cm-link { color: rgb(0, 0, 204); }
+.cm-negative { color: rgb(221, 68, 68); }
+.cm-positive { color: rgb(34, 153, 34); }
+.cm-header, .cm-strong { font-weight: 700; }
+.cm-del { text-decoration: line-through; }
+.cm-em { font-style: italic; }
+.cm-link { text-decoration: underline; }
+.cm-error { color: red; }
+.cm-invalidchar { color: red; }
+.cm-constant { color: rgb(38, 139, 210); }
+.cm-defined { color: rgb(181, 137, 0); }
+div.CodeMirror span.CodeMirror-matchingbracket { color: rgb(0, 255, 0); }
+div.CodeMirror span.CodeMirror-nonmatchingbracket { color: rgb(255, 34, 34); }
+.cm-s-inner .CodeMirror-activeline-background { background: inherit; }
+.CodeMirror { position: relative; overflow: hidden; }
+.CodeMirror-scroll { height: 100%; outline: 0px; position: relative; box-sizing: content-box; background: inherit; }
+.CodeMirror-sizer { position: relative; }
+.CodeMirror-gutter-filler, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-vscrollbar { position: absolute; z-index: 6; display: none; outline: 0px; }
+.CodeMirror-vscrollbar { right: 0px; top: 0px; overflow: hidden; }
+.CodeMirror-hscrollbar { bottom: 0px; left: 0px; overflow: auto hidden; }
+.CodeMirror-scrollbar-filler { right: 0px; bottom: 0px; }
+.CodeMirror-gutter-filler { left: 0px; bottom: 0px; }
+.CodeMirror-gutters { position: absolute; left: 0px; top: 0px; padding-bottom: 10px; z-index: 3; overflow-y: hidden; }
+.CodeMirror-gutter { white-space: normal; height: 100%; box-sizing: content-box; padding-bottom: 30px; margin-bottom: -32px; display: inline-block; }
+.CodeMirror-gutter-wrapper { position: absolute; z-index: 4; background: 0px 0px !important; border: none !important; }
+.CodeMirror-gutter-background { position: absolute; top: 0px; bottom: 0px; z-index: 4; }
+.CodeMirror-gutter-elt { position: absolute; cursor: default; z-index: 4; }
+.CodeMirror-lines { cursor: text; }
+.CodeMirror pre { border-radius: 0px; border-width: 0px; background: 0px 0px; font-family: inherit; font-size: inherit; margin: 0px; white-space: pre; overflow-wrap: normal; color: inherit; z-index: 2; position: relative; overflow: visible; }
+.CodeMirror-wrap pre { overflow-wrap: break-word; white-space: pre-wrap; word-break: normal; }
+.CodeMirror-code pre { border-right: 30px solid transparent; width: fit-content; }
+.CodeMirror-wrap .CodeMirror-code pre { border-right: none; width: auto; }
+.CodeMirror-linebackground { position: absolute; inset: 0px; z-index: 0; }
+.CodeMirror-linewidget { position: relative; z-index: 2; overflow: auto; }
+.CodeMirror-wrap .CodeMirror-scroll { overflow-x: hidden; }
+.CodeMirror-measure { position: absolute; width: 100%; height: 0px; overflow: hidden; visibility: hidden; }
+.CodeMirror-measure pre { position: static; }
+.CodeMirror div.CodeMirror-cursor { position: absolute; visibility: hidden; border-right: none; width: 0px; }
+.CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+.CodeMirror-focused div.CodeMirror-cursor { visibility: inherit; }
+.cm-searching { background: rgba(255, 255, 0, 0.4); }
+span.cm-underlined { text-decoration: underline; }
+span.cm-strikethrough { text-decoration: line-through; }
+.cm-tw-syntaxerror { color: rgb(255, 255, 255); background-color: rgb(153, 0, 0); }
+.cm-tw-deleted { text-decoration: line-through; }
+.cm-tw-header5 { font-weight: 700; }
+.cm-tw-listitem:first-child { padding-left: 10px; }
+.cm-tw-box { border-style: solid; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-color: inherit; border-top-width: 0px !important; }
+.cm-tw-underline { text-decoration: underline; }
+@media print {
+  .CodeMirror div.CodeMirror-cursor { visibility: hidden; }
+}
+
+
+:root {
+    --side-bar-bg-color: #fafafa;
+    --control-text-color: #777;
+}
+
+@include-when-export url(https://fonts.loli.net/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext);
+
+/* open-sans-regular - latin-ext_latin */
+  /* open-sans-italic - latin-ext_latin */
+    /* open-sans-700 - latin-ext_latin */
+    /* open-sans-700italic - latin-ext_latin */
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: "Open Sans","Clear Sans", "Helvetica Neue", Helvetica, Arial, 'Segoe UI Emoji', sans-serif;
+    color: rgb(51, 51, 51);
+    line-height: 1.6;
+}
+
+#write {
+    max-width: 860px;
+  	margin: 0 auto;
+  	padding: 30px;
+    padding-bottom: 100px;
+}
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
+}
+
+#write > ul:first-child,
+#write > ol:first-child{
+    margin-top: 30px;
+}
+
+a {
+    color: #4183C4;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    position: relative;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    line-height: 1.4;
+    cursor: text;
+}
+h1:hover a.anchor,
+h2:hover a.anchor,
+h3:hover a.anchor,
+h4:hover a.anchor,
+h5:hover a.anchor,
+h6:hover a.anchor {
+    text-decoration: none;
+}
+h1 tt,
+h1 code {
+    font-size: inherit;
+}
+h2 tt,
+h2 code {
+    font-size: inherit;
+}
+h3 tt,
+h3 code {
+    font-size: inherit;
+}
+h4 tt,
+h4 code {
+    font-size: inherit;
+}
+h5 tt,
+h5 code {
+    font-size: inherit;
+}
+h6 tt,
+h6 code {
+    font-size: inherit;
+}
+h1 {
+    font-size: 2.25em;
+    line-height: 1.2;
+    border-bottom: 1px solid #eee;
+}
+h2 {
+    font-size: 1.75em;
+    line-height: 1.225;
+    border-bottom: 1px solid #eee;
+}
+
+/*@media print {
+    .typora-export h1,
+    .typora-export h2 {
+        border-bottom: none;
+        padding-bottom: initial;
+    }
+
+    .typora-export h1::after,
+    .typora-export h2::after {
+        content: "";
+        display: block;
+        height: 100px;
+        margin-top: -96px;
+        border-top: 1px solid #eee;
+    }
+}*/
+
+h3 {
+    font-size: 1.5em;
+    line-height: 1.43;
+}
+h4 {
+    font-size: 1.25em;
+}
+h5 {
+    font-size: 1em;
+}
+h6 {
+   font-size: 1em;
+    color: #777;
+}
+p,
+blockquote,
+ul,
+ol,
+dl,
+table{
+    margin: 0.8em 0;
+}
+li>ol,
+li>ul {
+    margin: 0 0;
+}
+hr {
+    height: 2px;
+    padding: 0;
+    margin: 16px 0;
+    background-color: #e7e7e7;
+    border: 0 none;
+    overflow: hidden;
+    box-sizing: content-box;
+}
+
+li p.first {
+    display: inline-block;
+}
+ul,
+ol {
+    padding-left: 30px;
+}
+ul:first-child,
+ol:first-child {
+    margin-top: 0;
+}
+ul:last-child,
+ol:last-child {
+    margin-bottom: 0;
+}
+blockquote {
+    border-left: 4px solid #dfe2e5;
+    padding: 0 15px;
+    color: #777777;
+}
+blockquote blockquote {
+    padding-right: 0;
+}
+table {
+    padding: 0;
+    word-break: initial;
+}
+table tr {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 0;
+}
+table tr:nth-child(2n),
+thead {
+    background-color: #f8f8f8;
+}
+table th {
+    font-weight: bold;
+    border: 1px solid #dfe2e5;
+    border-bottom: 0;
+    margin: 0;
+    padding: 6px 13px;
+}
+table td {
+    border: 1px solid #dfe2e5;
+    margin: 0;
+    padding: 6px 13px;
+}
+table th:first-child,
+table td:first-child {
+    margin-top: 0;
+}
+table th:last-child,
+table td:last-child {
+    margin-bottom: 0;
+}
+
+.CodeMirror-lines {
+    padding-left: 4px;
+}
+
+.code-tooltip {
+    box-shadow: 0 1px 1px 0 rgba(0,28,36,.3);
+    border-top: 1px solid #eef2f2;
+}
+
+.md-fences,
+code,
+tt {
+    border: 1px solid #e7eaed;
+    background-color: #f8f8f8;
+    border-radius: 3px;
+    padding: 0;
+    padding: 2px 4px 0px 4px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: #f3f4f4;
+    padding: 0 2px 0 2px;
+}
+
+.md-fences {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+}
+
+
+.md-task-list-item > input {
+  margin-left: -1.3em;
+}
+
+@media print {
+    html {
+        font-size: 13px;
+    }
+    table,
+    pre {
+        page-break-inside: avoid;
+    }
+    pre {
+        word-wrap: break-word;
+    }
+}
+
+.md-fences {
+	background-color: #f8f8f8;
+}
+#write pre.md-meta-block {
+	padding: 1rem;
+    font-size: 85%;
+    line-height: 1.45;
+    background-color: #f7f7f7;
+    border: 0;
+    border-radius: 3px;
+    color: #777777;
+    margin-top: 0 !important;
+}
+
+.mathjax-block>.code-tooltip {
+	bottom: .375rem;
+}
+
+.md-mathjax-midline {
+    background: #fafafa;
+}
+
+#write>h3.md-focus:before{
+	left: -1.5625rem;
+	top: .375rem;
+}
+#write>h4.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h5.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+#write>h6.md-focus:before{
+	left: -1.5625rem;
+	top: .285714286rem;
+}
+.md-image>.md-meta {
+    /*border: 1px solid #ddd;*/
+    border-radius: 3px;
+    padding: 2px 0px 0px 4px;
+    font-size: 0.9em;
+    color: inherit;
+}
+
+.md-tag {
+    color: #a7a7a7;
+    opacity: 1;
+}
+
+.md-toc { 
+    margin-top:20px;
+    padding-bottom:20px;
+}
+
+.sidebar-tabs {
+    border-bottom: none;
+}
+
+#typora-quick-open {
+    border: 1px solid #ddd;
+    background-color: #f8f8f8;
+}
+
+#typora-quick-open-item {
+    background-color: #FAFAFA;
+    border-color: #FEFEFE #e5e5e5 #e5e5e5 #eee;
+    border-style: solid;
+    border-width: 1px;
+}
+
+/** focus mode */
+.on-focus-mode blockquote {
+    border-left-color: rgba(85, 85, 85, 0.12);
+}
+
+header, .context-menu, .megamenu-content, footer{
+    font-family: "Segoe UI", "Arial", sans-serif;
+}
+
+.file-node-content:hover .file-node-icon,
+.file-node-content:hover .file-node-open-state{
+    visibility: visible;
+}
+
+.mac-seamless-mode #typora-sidebar {
+    background-color: #fafafa;
+    background-color: var(--side-bar-bg-color);
+}
+
+.md-lang {
+    color: #b4654d;
+}
+
+/*.html-for-mac {
+    --item-hover-bg-color: #E6F0FE;
+}*/
+
+#md-notification .btn {
+    border: 0;
+}
+
+.dropdown-menu .divider {
+    border-color: #e5e5e5;
+    opacity: 0.4;
+}
+
+.ty-preferences .window-content {
+    background-color: #fafafa;
+}
+
+.ty-preferences .nav-group-item.active {
+    color: white;
+    background: #999;
+}
+
+.menu-item-container a.menu-style-btn {
+    background-color: #f5f8fa;
+    background-image: linear-gradient( 180deg , hsla(0, 0%, 100%, 0.8), hsla(0, 0%, 100%, 0)); 
+}
+
+
+
+mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line], svg[data-table] > g > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame], svg[data-table] > g > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed, svg[data-table] > g > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted, svg[data-table] > g > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > g > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+  stroke-width: 3;
+}
+
+g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+
+.MathJax g[data-mml-node="xypic"] path {
+  stroke-width: inherit;
+}
+mjx-container[jax="SVG"] path[data-c], mjx-container[jax="SVG"] use[data-c] {
+							stroke-width: 0;
+						}
+</style><title>index</title>
+</head>
+<body class='typora-export os-windows'><div class='typora-export-content'>
+<div id='write'  class=''><h1 id='homework-assignment-4-ultimate-tic-tac-toe'><span>Homework Assignment 4: Ultimate Tic-Tac-Toe</span></h1><p><span>For this assignment, you will write a program to play Ultimate Tic-Tac-Toe against the user.</span></p><h2 id='0-contents'><span>0. Contents</span></h2><div class='md-toc' mdtype='toc'><p class="md-toc-content" role="list"><span role="listitem" class="md-toc-item md-toc-h1" data-ref="n2"><a class="md-toc-inner" href="#homework-assignment-4-ultimate-tic-tac-toe">Homework Assignment 4: Ultimate Tic-Tac-Toe</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n290"><a class="md-toc-inner" href="#0-contents">0. Contents</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n3"><a class="md-toc-inner" href="#1-user-requirements">1. User Requirements</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n20"><a class="md-toc-inner" href="#2-starting-the-assignment">2. Starting the Assignment</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n23"><a class="md-toc-inner" href="#3-user-interface">3. User Interface</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n298"><a class="md-toc-inner" href="#31-manual-user-interface-design">3.1. Manual User Interface Design</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n333"><a class="md-toc-inner" href="#32-behavior-of-the-gui">3.2. Behavior of the GUI</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n46"><a class="md-toc-inner" href="#4-computer-play">4. Computer Play</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n53"><a class="md-toc-inner" href="#5-software-architecture">5. Software Architecture</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n58"><a class="md-toc-inner" href="#6-representation-of-plays">6. Representation of Plays</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n73"><a class="md-toc-inner" href="#7-coding-requirements">7. Coding Requirements</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n75"><a class="md-toc-inner" href="#71-the-player-enumeration">7.1. The <strong>Player</strong> Enumeration</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n79"><a class="md-toc-inner" href="#72-the-tictactoeboard-class">7.2. The <strong>TicTacToeBoard</strong> Class</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n364"><a class="md-toc-inner" href="#721-fields-and-properties">7.2.1. Fields and properties</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n105"><a class="md-toc-inner" href="#722-public-constructors">7.2.2. public constructors</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n109"><a class="md-toc-inner" href="#723-a-public-getavailableplays-method">7.2.3. A <strong>public GetAvailablePlays</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n111"><a class="md-toc-inner" href="#724-a-private-method-to-update-the-number-of-plays-made-to-a-path-in-the-board">7.2.4. A <strong>private</strong> method to update the number of plays made to a path in the board</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n113"><a class="md-toc-inner" href="#725-a-public-play-method">7.2.5. A <strong>public Play</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n115"><a class="md-toc-inner" href="#73-the-ultimateboard-class">7.3. The <strong>UltimateBoard</strong> Class</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n400"><a class="md-toc-inner" href="#731-fields-and-properties">7.3.1. Fields and properties</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n129"><a class="md-toc-inner" href="#732-public-constructors">7.3.2. public constructors</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n132"><a class="md-toc-inner" href="#733-a-public-getavailableplays-method">7.3.3. A <strong>public GetAvailablePlays</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n134"><a class="md-toc-inner" href="#734-a-public-play-method">7.3.4. A <strong>public Play</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n448"><a class="md-toc-inner" href="#735-a-public-issubboardwon-method">7.3.5. A public IsSubBoardWon method</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n148"><a class="md-toc-inner" href="#74-the-gametreenode-class">7.4. The <strong>GameTreeNode</strong> Class</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n455"><a class="md-toc-inner" href="#741-fields-and-property">7.4.1. Fields and property</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n161"><a class="md-toc-inner" href="#742-public-constructors">7.4.2. public constructors</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n501"><a class="md-toc-inner" href="#743-a-private-static-method-to-do-a-random-simulation">7.4.3. A private static method to do a random simulation</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n521"><a class="md-toc-inner" href="#744-a-public-simulate-method">7.4.4. A <strong>public Simulate</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n222"><a class="md-toc-inner" href="#745-a-public-getbestchild-method">7.4.5. A <strong>public GetBestChild</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n224"><a class="md-toc-inner" href="#746-a-public-getchild-method">7.4.6. A <strong>public GetChild</strong> method</a></span><span role="listitem" class="md-toc-item md-toc-h3" data-ref="n446"><a class="md-toc-inner" href="#75-the-userinterface-class">7.5. The <strong>UserInterface</strong> Class</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n556"><a class="md-toc-inner" href="#751-private-fields">7.5.1. private fields</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n632"><a class="md-toc-inner" href="#752-the-constructor">7.5.2. The constructor</a></span><span role="listitem" class="md-toc-item md-toc-h4" data-ref="n270"><a class="md-toc-inner" href="#753-an-event-handler-for-the-buttons">7.5.3. An event handler for the buttons</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n278"><a class="md-toc-inner" href="#8-testing-and-performance">8. Testing and Performance</a></span><span role="listitem" class="md-toc-item md-toc-h2" data-ref="n283"><a class="md-toc-inner" href="#9-submitting-your-solution">9. Submitting Your Solution</a></span></p></div><h2 id='1-user-requirements'><span>1. User Requirements</span></h2><p><span>A software company wishes to market an application for the 2-player game, Ultimate Tic-Tac-Toe. The game board is a tic-tac-toe board containing nine tic-tac-toe boards:</span></p><p><img src="ultimate-tic-tac-toe.jpg" referrerpolicy="no-referrer" alt="An Ultimate Tic-Tac-Toe board."></p><p><span>Players take turns placing their symbols into one of the unoccupied squares of one of the nine smaller boards. The first player to play uses symbol &#39;X&#39;, and the other player uses symbol &#39;O&#39;. Plays are made according to the following rules:</span></p><ol><li><span>The first play of the game may be made to any of the 81 squares.</span></li><li><span>When one of the nine smaller boards contains three of the same symbol in a straight line, horizontally, vertically, or diagonally, the player playing that symbol has won that board. No further plays are allowed on that board.</span></li><li><span>After the first play, the legal plays are determined by the previous play. Specifically, if the last play was to row </span><em><span>i</span></em><span> and column </span><em><span>j</span></em><span> of some smaller board, then the next play must be to the smaller board on row </span><em><span>i</span></em><span> and column </span><em><span>j</span></em><span> of the larger board. If this board is full or has been won, then this play can be made to any board that has not been won.</span></li><li><span>If a player wins three smaller boards in a straight line, horizontally, vertically, or diagonally, that player wins.</span></li><li><span>If at some point no legal plays remain and neither player has won, the game is a draw.</span></li></ol><p><span>Examples of these rules can be found </span><a href='https://mathwithbaddrawings.com/2013/06/16/ultimate-tic-tac-toe/'><span>here</span></a><span> and in the </span><a href=''><span>demo video</span></a><span>.</span></p><p><span>The program must implement game play against a user. The user should be able to decide who plays first. Only one level of difficulty is required - this level should challenge a novice player. However, the implementation should be adaptable so that different difficulty levels could be readily incorporated into future versions. When the game is over, an indication of the game&#39;s outcome should be given.</span></p><h2 id='2-starting-the-assignment'><span>2. Starting the Assignment</span></h2><p><span>Create a GitHub repository using the link provided in the Canvas assignment and clone it to your local machine. This repository should contain a Visual Studio solution containing a new Windows Forms Application with an additional unit test project, </span><strong><span>Ksu.Cis300.UltimateTicTacToe.Tests</span></strong><span>. Note that no code is provided other than the unit test code. You will need to write the entire program, including designing the GUI.</span></p><h2 id='3-user-interface'><span>3. User Interface</span></h2><p><span>In this section, we will describe the look and behavior of the GUI that you are to design. We will first outline what you will need to build using the Design window. Then we will describe the required behavior of the GUI. You will need to provide code to implement this behavior (see </span><a href='#7-coding-requirements'><span>Section 7. Coding Requirements</span></a><span>). The </span><a href=''><span>demo video</span></a><span> also illustrates the expected look and behavior.</span></p><h3 id='31-manual-user-interface-design'><span>3.1. Manual User Interface Design</span></h3><p><span>Using the Design window, design a GUI resembling the following:</span></p><p><img src="design-window.png" alt="The GUI as designed through the Design window" style="zoom:67%;" /></p><p><span>Set the form&#39;s </span><strong><span>MaximizeBox</span></strong><span> property to </span><strong><span>False</span></strong><span> to disable its maximize icon. Also, set its </span><strong><span>AutoSize</span></strong><span> property to </span><strong><span>True</span></strong><span> and its </span><strong><span>AutoSizeMode</span></strong><span> property to </span><strong><span>GrowAndShrink</span></strong><span>. These changes will cause the form to be set to the appropriate size when the program runs.</span></p><p><span>At the top of the form is a </span><strong><span>StatusStrip</span></strong><span>. When you add it to the form, it will appear at the bottom. Use its </span><strong><span>Dock</span></strong><span> property to move it to the top. Add a </span><strong><span>StatusLabel</span></strong><span> to the </span><strong><span>StatusStrip</span></strong><span> using the drop-down near its left edge. The text of this </span><strong><span>StatusLabel</span></strong><span> is unimportant, as it will be changed by the code (see </span><a href='#7-coding-requirements'><span>Section 7. Coding Requirements</span></a><span>).</span></p><p><span>Below the </span><strong><span>StatusStrip</span></strong><span> is a </span><strong><span>FlowLayoutPanel</span></strong><span> (you can&#39;t see it in the above image because its size is 0x0). Add this panel just below the </span><strong><span>StatusStrip</span></strong><span> near the left edge of the form. The code you will write will add all the remaining controls to this panel - see </span><a href='#32-behavior-of-the-gui'><span>Section 3.2. Behavior of the GUI</span></a><span> and </span><a href='#7-coding-requirements'><span>Section 7. Coding Requirements</span></a><span>. Set the following properties of this panel </span></p><ul><li><strong><span>FlowDirection</span></strong><span>: </span><strong><span>TopDown</span></strong></li><li><strong><span>AutoSize</span></strong><span>: </span><strong><span>True</span></strong></li><li><strong><span>AutoSizeMode</span></strong><span>: </span><strong><span>GrowAndShrink</span></strong></li><li><strong><span>WrapContents</span></strong><span>: </span><strong><span>False</span></strong></li></ul><p><span>These changes will cause the panel&#39;s size to be changed to 0x0. If you need to select this panel at some point, you&#39;ll need to use the </span><code>Tab</code><span> key to cycle through the controls on the form.</span></p><h3 id='32-behavior-of-the-gui'><span>3.2. Behavior of the GUI</span></h3><p>&nbsp;</p><p><span>Your finished program should begin by opening a </span><strong><span>MessageBox</span></strong><span> resembling the following:</span></p><p><img src="first-play-dialog.png" alt="The MessageBox to be shown at startup." style="zoom:67%;" /></p><p><span>If the user clicks &quot;Yes&quot;, it should then display a window resembling the following:</span></p><p><img src="main-gui.png" alt="The initial main GUI when the human plays first." style="zoom:67%;" /></p><p><span>If you set all of the properties correctly within the Design window (see </span><a href='#31-manual-user-interface-design'><span>Section 3.1. Manual User Interface Design</span></a><span>), it should be impossible to maximize or resize this window. All 81 buttons should be enabled initially. </span></p><p><span>If the user clicks &quot;No&quot; in the initial </span><strong><span>MessageBox</span></strong><span>, it should display essentially the same window, but with the computer&#39;s first play shown. Furthermore, only the buttons representing legal plays should be enabled. For example, if the computer&#39;s first play is to the lower-right corner of the center board, the window should look like:</span></p><p><img src="computer-first.png" alt="computer-first" style="zoom:67%;" /></p><p><span>If, at any point in the game play, the user clicks one of the buttons, all buttons should be disabled, the user&#39;s symbol (&quot;X&quot; or &quot;O&quot;, depending on who played first) should appear on the clicked button, and the message, &quot;My turn.&quot; should appear in the </span><strong><span>StatusLabel</span></strong><span> at the top. Once the program has decided on its play, the computer&#39;s symbol should appear on that button, the message, &quot;Your turn.&quot; should appear in the </span><strong><span>StatusLabel</span></strong><span>, and the buttons representing all legal plays should be enabled.</span></p><p><span>When a play by either the program or the user wins one of the smaller boards, all buttons on that board should be replaced by a single large button containing that player&#39;s symbol; for example:</span></p><p><img src="x-wins-a-board.png" alt="The GUI after X has won the center board." style="zoom:67%;" /></p><p><span>These large buttons should always be disabled.</span></p><p><span>When a play by either the program or the user ends the game, after that play has been recorded on the GUI, and while all the buttons are disabled, one of the following messages should be shown in the </span><strong><span>StatusLabel</span></strong><span>:</span></p><ul><li><span>&quot;You win!&quot;, indicating the user has won.</span></li><li><span>&quot;I win!&quot;, indicating the program has won.</span></li><li><span>&quot;The game is a draw.&quot;, indicating the game is a draw.</span></li></ul><p><span>At this point, because no controls are enabled, the window will remain like this until the user closes it, ending the program.</span></p><h2 id='4-computer-play'><span>4. Computer Play</span></h2><p><span>As with Homework 3, we will use a game tree as the basis for our algorithm to find the computer&#39;s play. Given any board position, we define the game tree as the tree whose root corresponds to the given board position, and whose children are the game trees for the board positions resulting from each legal play from the given board position. Thus, the root of the game tree for the initial position has 81 children. Each of these children has 8 or 9 children, depending on the play leading to that child, and so on.</span></p><p><span>The minimax strategy is inappropriate for this game for two reasons. First, the tree is too large to apply the minimax strategy - even with pruning - all the way to the leaves. The usual solution to this problem is to apply an </span><em><span>evaluation function</span></em><span> that approximates the strength of the current player&#39;s position after a certain depth of the game tree is reached. However, effective evaluation functions for this game have been elusive.</span></p><p><span>An alternative approach is to use a </span><em><span>Monte Carlo simulation</span></em><span>. This approach involves simulating many random games from the current position, and choosing the play that led to the best results overall. The main shortcoming of Monte Carlo simulations is that actual game play is not at all random, as the opponent is also trying to make the best possible play.</span></p><p><span>We will use an approach called the </span><em><span>Monte Carlo tree search algorithm</span></em><span>, which is a combination of the minimax strategy with a Monte Carlo simulation. A portion of the game tree is built and stored. Initially, this portion is a single node. Each time the program needs to make a play, it does a large number of simulations of games from the current board position. The initial part of the simulation follows a path through the stored game tree until the path reaches a node that has not yet been in a simulation path - this node will always be a leaf of the stored game tree. As this path is followed, if it reaches a leaf that has been in a prior simulation path, this node&#39;s children are added to the stored tree, and the path continues (or if the game is over, the simulation finishes). When the simulation reaches a leaf that has not yet been in a simulation path, it continues simulating the game by randomly choosing moves until the game is over. During this random simulation, no additional nodes are added to the stored tree. The results of this simulation are then used to update statistics stored in each of the nodes on the path followed through the stored tree. As the actual game is played, a portion of the stored tree can be retained for use in finding subsequent plays.</span></p><p><span>It is important to realize that the portion of the simulation that uses the stored tree is </span><em><span>not</span></em><span> random. Instead, the path is chosen is such a way as to give preference to more promising plays, while at the same time exploring enough different paths to give reasonable estimates of how promising each play is. Furthermore, the notion of &quot;promising&quot; is from the perspective of the current player. Because of this definition, we don&#39;t need separate algorithms for minimizing and maximizing, as we did for Homework 3. Instead, at any node in the tree, the current player is trying to maximize how promising the next position will be from that player&#39;s own perspective. As a result, the early plays in the paths followed most frequently will tend to match play sequences that the two players are likely to take. Furthermore, the stored tree will be built more deeply along these paths. We will provide more details about how this is done in </span><a href='#7-coding-requirements'><span>Section 7. Coding Requirements</span></a><span>.</span></p><p><span>An additional advantage to this approach is that it is easy to improve the performance of the algorithm - we simply increase the number of simulations done for each play. Consequently, adding levels of difficulty to this program would be fairly straightforward.</span></p><h2 id='5-software-architecture'><span>5. Software Architecture</span></h2><p><span>The following class diagram shows the software architecture of the program:</span></p><p><img src="ClassDiagram.png" referrerpolicy="no-referrer" alt="The software architecture"></p><p><span>The </span><strong><span>UserInterface</span></strong><span> class implements the GUI. Instances of the </span><strong><span>GameTreeNode</span></strong><span> class will form the portion of the game tree built by the program. Instances of the </span><strong><span>UltimateBoard</span></strong><span> class will represent game positions. Instances of the </span><strong><span>TicTacToeBoard</span></strong><span> class will represent positions of the nine smaller tic-tac-toe boards, as well as a summary of outcomes for these smaller games within the larger board. </span><strong><span>Player</span></strong><span> is an enumeration defining values representing the two players, as well as the absence of a play on a square and a drawn game within the summary board.</span></p><p><span>Because unit tests are provided for this program, the names of these types and their </span><strong><span>public</span></strong><span> members must match those in the above diagram (otherwise, the unit tests won&#39;t compile). Names for </span><strong><span>private</span></strong><span> members don&#39;t need to match the above names, but must follow the </span><a href='http://people.cs.ksu.edu/~rhowell/DataStructures/redirect/naming'><span>naming conventions</span></a><span> for this class.</span></p><h2 id='6-representation-of-plays'><span>6. Representation of Plays</span></h2><p><span>Apart from the types shown in the above class diagram, you will also need a type to represent a play by either player. All that is needed for this representation are the following  four </span><strong><span>int</span></strong><span>s:</span></p><ul><li><span>The row in the larger board.</span></li><li><span>The column in the larger board.</span></li><li><span>The row in the smaller board.</span></li><li><span>The column in the smaller board.</span></li></ul><p><span>You will use 4-tuples of the form </span><code>(int, int, int, int)</code><span> to represent a play. You can access the indvidual data items within a value tuple via the properties, </span><strong><span>Item1</span></strong><span>, </span><strong><span>Item2</span></strong><span>, etc. For example, the row in the smaller board given by the </span><code>(int, int, int, int)</code><span> variable </span><code>loc</code><span> can be accessed as </span><code>loc.Item3</code><span>. However, clearer code often results by doing as assignment such as:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c#"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.52344px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">(<span class="cm-variable-3">int</span> <span class="cm-variable">row</span>, <span class="cm-variable-3">int</span> <span class="cm-variable">col</span>, <span class="cm-variable-3">int</span> <span class="cm-variable">_</span>, <span class="cm-variable-3">int</span> <span class="cm-variable">_</span>) <span class="cm-operator">=</span> <span class="cm-variable">loc</span>;</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p><span>The underscores in the above example are used when we don&#39;t need all of the components of the tuple.</span></p><h2 id='7-coding-requirements'><span>7. Coding Requirements</span></h2><p><span>Requirements for each of the types shown in the class diagram above are given in what follows. In some cases, you are required to break the code into additional </span><strong><span>private</span></strong><span> methods. Look for places where code duplication can be avoided by defining another method, or where long methods can be broken into shorter methods. </span></p><p><span>Try to structure your code so that overriding compiler warning about possible </span><strong><span>NullReferenceException</span></strong><span>s is unnecessary. Specifically, define variables and return types to be nullable only if you want to be able to store/return </span><strong><span>null</span></strong><span>. Then try to structure the code so that the compiler can tell when a value is nonnull. The model solution contains only one instance of overriding such warnings.</span></p><h3 id='71-the-player-enumeration'><span>7.1. The </span><strong><span>Player</span></strong><span> Enumeration</span></h3><p><span>Defining enumerations is described in </span><a href='https://cis300.cs.ksu.edu/appendix/syntax/enumerations/index.html'><span>&quot;Enumerations&quot;</span></a><span>. The elements of the enumeration should be listed in the order shown in the class diagram. This will give </span><strong><span>Player.First</span></strong><span> an underlying value of 0 and </span><strong><span>Player.Second</span></strong><span> an underlying value of 1. This will be useful in implementing the </span><strong><span>TicTacToeBoard</span></strong><span> class, where these values can be used as array indices.</span></p><p><span>List the elements of the enumeration on separate lines, documenting each with a &quot;///&quot; comment. (This documentation is not required in general, but is required for this assignment.)</span></p><h3 id='72-the-tictactoeboard-class'><span>7.2. The </span><strong><span>TicTacToeBoard</span></strong><span> Class</span></h3><p><span>Instances of this class will represent generalized tic-tac-toe boards, which can be used to represent the nine smaller boards in an ultimate tic-tac-toe board, as well as the larger one. For efficiency, they should do no error checking. You may assume, however, that user code will not attempt to play more than once to the same square. You may also assume that </span><strong><span>Player.None</span></strong><span> will not be played to any of the squares. </span><strong><span>Player.Draw</span></strong><span> may be played, however, but cannot win with three in a row.</span></p><p><span>This class will need nine fields, two properties, two </span><strong><span>public</span></strong><span> constructors, two </span><strong><span>public</span></strong><span> methods, and one </span><strong><span>private</span></strong><span> method. Each of these is described in what follows.</span></p><h4 id='721-fields-and-properties'><span>7.2.1. Fields and properties</span></h4><p><span>You will need one </span><strong><span>public static readonly int</span></strong><span> field </span><strong><span>Rows</span></strong><span> that stores the number of rows (or equivalently columns) on a board. This value should be 3.</span></p><p><span>You will then need the following </span><strong><span>private</span></strong><span> fields:</span></p><ul><li><span>A </span><strong><span>const int</span></strong><span> giving the number of players (2).</span></li><li><span>A </span><strong><span>static readonly int</span></strong><span> giving the number of squares on the board. This should be the number of rows multiplied by itself.</span></li><li><span>A </span><strong><span>Player[</span>&nbsp;<span>,</span>&nbsp;<span>]</span></strong><span> giving the content of each square of the board. It should be initialized so that its number of rows and columns is given by </span><strong><span>Rows</span></strong><span>.</span></li></ul><ul><li><span>A </span><strong><span>readonly int[</span>&nbsp;<span>,</span>&nbsp;<span>]</span></strong><span> to keep track of how many times each of the two actual players (i.e., not </span><strong><span>Player.Draw</span></strong><span>) has played to each of the three rows. This is an array of arrays - it contains three arrays, each having two elements. Element </span><em><span>i</span></em><span> pertains to row </span><em><span>i</span></em><span>, so that its two elements indicate how many times the first and second player, respectively, have played to row </span><em><span>i</span></em><span>. We use an array of arrays, rather than a 2-dimensional array, so that any of the 2-element arrays it contains may be passed to one of the methods described below. It can be initialized to a new </span><strong><span>int</span><span>[</span><span>3</span><span>]</span><span>[</span>&nbsp;<span>]</span></strong><span> here, but each of the 2-element arrays will need to be created in the constructor. Note that even though it is </span><strong><span>readonly</span></strong><span>, its contents can be changed - only the reference stored in the field itself cannot be changed.</span></li><li><span>An </span><strong><span>int</span><span>[</span>&nbsp;<span>]</span><span>[</span>&nbsp;<span>]</span></strong><span> to keep track of how many times each of the two actual players has played to each of the three columns.</span></li><li><span>A 2-element </span><strong><span>int[</span>&nbsp;<span>]</span></strong><span> to keep track of how many times each of the two actual players has played to the major diagonal (i.e., the one beginning at the upper-left corner).</span></li><li><span>A 2-element </span><strong><span>int[</span>&nbsp;<span>]</span></strong><span> to keep track of how many times each of the two actual players has played to the minor diagonal (i.e., the one beginning at the upper-right corner).</span></li><li><span>An </span><strong><span>int</span></strong><span> to keep track of the number of plays made to this board.</span></li></ul><p><span>Finally, you will need two </span><strong><span>public</span></strong><span> properties, </span><strong><span>IsWon</span></strong><span> and </span><strong><span>IsOver</span></strong><span>, that each get </span><strong><span>bool</span></strong><span> values indicating whether one of the players has won and whether the game is over, respectively. Note that if a game has been won, it must be over, but that the converse is not necessarily true - if a game is drawn, it is over but hasn&#39;t been won. Each of these should be implemented using the default implementation with a </span><strong><span>get</span></strong><span> accessor and a </span><strong><span>private set</span></strong><span> accessor.</span></p><h4 id='722-public-constructors'><span>7.2.2. public constructors</span></h4><p><span>Each constructor must be named the same as the type it is constructing (i.e., </span><strong><span>TicTacToeBoard</span></strong><span> in this case). Multiple constructors can be defined by giving different parameter lists to each one (i.e., different sequences of parameter types).</span></p><p><span>The first constructor will take no parameters. It will be used to construct an empty board. It will need to initialize each element of the 2-dimensional array to </span><strong><span>Player.None</span></strong><span>. It will also need to construct new 2-element arrays for each element of the two arrays of arrays (each of these arrays of arrays will first need to be initialized to a new </span><strong><span>int</span><span>[</span><span>3</span><span>]</span><span>[</span>&nbsp;<span>]</span></strong><span>, either here or in an initializer on the field declaration).</span></p><p><span>The second constructor will take a single parameter of type </span><strong><span>TicTacToeBoard</span></strong><span>. It will be used to construct a copy of the given board. Thus, it will need to copy the contents of all the fields and properties of the given board to its own fields and properties. You can use </span><a href='https://docs.microsoft.com/en-us/dotnet/api/system.array.copy?view=netframework-4.7.2#System_Array_Copy_System_Array_System_Array_System_Int32_'><strong><span>Array.Copy</span></strong></a><span> to copy the contents of a 2-dimensional array to another 2-dimensional array of the same size. In this case, the array&#39;s </span><strong><span>Length</span></strong><span> property gives the total number of elements in the array, which is needed for the third parameter to the </span><strong><span>Array.Copy</span></strong><span> method. Either this method or the source array&#39;s </span><a href='https://docs.microsoft.com/en-us/dotnet/api/system.array.copyto?view=netframework-4.7.2#System_Array_CopyTo_System_Array_System_Int32_'><strong><span>CopyTo</span></strong></a><span> method may be used to copy the contents of a 1-dimensional array to another. To copy the arrays of arrays, a bit more work is needed. You will need to iterate through the 3 elements, and for each of these elements, either construct a new 2-element array and copy the contents of the source array into it, or use the source array&#39;s </span><a href='https://docs.microsoft.com/en-us/dotnet/api/system.array.clone?view=netframework-4.7.2#System_Array_Clone'><strong><span>Clone</span></strong></a><span> method, which returns an </span><strong><span>object</span></strong><span> that is a copy of the source array (note that because the method returns an </span><strong><span>object</span></strong><span>, you will need to cast it to type </span><strong><span>int[</span>&nbsp;<span>]</span></strong><span>). Note that the </span><strong><span>Clone</span></strong><span> method cannot be used to copy the entire array of arrays because it only makes a </span><em><span>shallow</span></em><span> copy; i.e., the 3 elements in the clone will each contain a reference to one of the arrays contained in the source array.</span></p><h4 id='723-a-public-getavailableplays-method'><span>7.2.3. A </span><strong><span>public GetAvailablePlays</span></strong><span> method</span></h4><p><span>This method takes as its parameters a </span><strong><span>List&lt;(int, int, int, int)&gt;</span></strong><span> and the row and column of this board in the larger board (this method is only meant to be used for the smaller boards). It should return nothing. It should iterate through the 2-dimensional array, and for each empty location (i.e., having a value of </span><strong><span>Player.None</span></strong><span>), add that location to the list, using the given row and column as the first two coordinates.</span></p><h4 id='724-a-private-method-to-update-the-number-of-plays-made-to-a-path-in-the-board'><span>7.2.4. A </span><strong><span>private</span></strong><span> method to update the number of plays made to a path in the board</span></h4><p><span>This method should take as its parameters a 2-element </span><strong><span>int[ ]</span></strong><span> giving the number of plays each player has made to some path in the board, and the </span><strong><span>Player</span></strong><span> making a play to this path. It should return nothing. It should increment the number of plays for the given player to this path, and if this brings the incremented value to the number of rows, update the properties to indicate that the game is over and won. You can use the given </span><strong><span>Player</span></strong><span> as an array index if you cast it to </span><strong><span>int</span></strong><span>.</span></p><h4 id='725-a-public-play-method'><span>7.2.5. A </span><strong><span>public Play</span></strong><span> method</span></h4><p><span>This method should take as its parameters the </span><strong><span>Player</span></strong><span> making the play and the row and column where that play is made. It should return nothing. It needs to update the 2-dimensional array by placing the given </span><strong><span>Player</span></strong><span> at the given row and column, and increment the number of plays. If this brings the number of plays to the number of squares on the board, it should update the property to indicate the game is over. If the player is not </span><strong><span>Player.Draw</span></strong><span>, it then needs to use the above method to update the number of plays made to each path through the given row and column. These paths will always include a row and a column. In addition, if the given row and column are equal, the major diagonal is one of the affected paths, and if the row and column sum to 1 less than the number of rows, the minor diagonal is one of the affected paths. Note that it is possible that both of the last two cases apply.</span></p><h3 id='73-the-ultimateboard-class'><span>7.3. The </span><strong><span>UltimateBoard</span></strong><span> Class</span></h3><p><span>Instances of this class will represent Ultimate Tic-Tac-Toe boards. It will need six </span><strong><span>private</span></strong><span> fields, two </span><strong><span>public</span></strong><span> properties, two </span><strong><span>public</span></strong><span> constructors, and three </span><strong><span>public</span></strong><span> methods. These are described in what follows.</span></p><h4 id='731-fields-and-properties'><span>7.3.1. Fields and properties</span></h4><p><span>You will need the following </span><strong><span>private</span></strong><span> fields:</span></p><ul><li><span>A </span><strong><span>readonly TicTacToeBoard[</span>&nbsp;<span>,</span>&nbsp;<span>]</span></strong><span> containing the smaller boards. This field needs to be initialized to a new array whose number of rows and columns is given by the appropriate constant from the </span><strong><span>TicTacToeBoard</span></strong><span> class.</span></li><li><span>A </span><strong><span>TicTacToeBoard</span></strong><span> representing the larger board. It needs to be initialized to an empty board.</span></li><li><span>A </span><strong><span>bool</span></strong><span> indicating whether the board represents a new game. This field should initially be </span><strong><span>true</span></strong><span>.</span></li><li><span>An </span><strong><span>int</span></strong><span> giving row (within a smaller board) of the last play made. If the board represents a new game, the value of this field is unimportant, as it won&#39;t be used in this case.</span></li><li><span>An </span><strong><span>int</span></strong><span> giving the column (within a smaller board) of the last play made. If the board represents a new game, the value of this field is unimportant, as it won&#39;t be used in this case.</span></li><li><span>The </span><strong><span>Player</span></strong><span> whose turn it is to play (initially </span><strong><span>Player.First</span></strong><span>).</span></li></ul><p><span>It will also need </span><strong><span>public</span></strong><span> properties </span><strong><span>IsOver</span></strong><span> and </span><strong><span>IsWon</span></strong><span>. They should each have </span><strong><span>get</span></strong><span> accessors that return the corresponding property from the larger </span><strong><span>TicTacToeBoard</span></strong><span>. </span></p><h4 id='732-public-constructors'><span>7.3.2. public constructors</span></h4><p><span>One constructor should take no parameters and construct a board for a new game. It will need to initialize the elements of the 2-dimensional array to new </span><strong><span>TicTacToeBoard</span></strong><span>s.</span></p><p><span>The other constructor should take as its only parameter an </span><strong><span>UtimateBoard</span></strong><span>. It should construct a copy of this board by copying the contents of the given board&#39;s fields to its own fields. Be sure to copy each element of the 2-dimensional array, as well as the larger board, by using the appropriate </span><strong><span>TicTacToeBoard</span></strong><span> constructor.</span></p><h4 id='733-a-public-getavailableplays-method'><span>7.3.3. A </span><strong><span>public GetAvailablePlays</span></strong><span> method</span></h4><p><span>This method should take no parameters and return a </span><strong><span>List&lt;(int, int, int, int)&gt;</span></strong><span> giving the legal plays. It will first need to decide whether the legal plays are restricted to a single smaller board. This will be the case if the game is not a new game and the smaller board indicated by the last two coordinates of the last move represents a game that is not over. In this case, it will need to return the list of available plays on that smaller board. Otherwise, it will need to iterate through all nine smaller boards, and for each board that represents a game that isn&#39;t over, accumulate its available plays.</span></p><h4 id='734-a-public-play-method'><span>7.3.4. A </span><strong><span>public Play</span></strong><span> method</span></h4><p><span>This method should take as its only parameter an </span><strong><span>(int, int, int, int)</span></strong><span> giving the location of the play to be made. It should return nothing. It should first make the given play for the current player to the appropriate smaller board. If this play ends the game on that smaller board, it should record either a win for the current player (if the smaller game was won) or a draw to the larger board. It should then indicate that this game is no longer a new game, save the last two coordinates of the given play as the last play made, and change the current player.</span></p><h4 id='735-a-public-issubboardwon-method'><span>7.3.5. A public IsSubBoardWon method</span></h4><p><span>This method should take as its parameters two </span><strong><span>int</span></strong><span>s giving the row and column of a smaller board within the entire board. It should return a </span><strong><span>bool</span></strong><span> indicating whether that smaller board has been won.</span></p><h3 id='74-the-gametreenode-class'><span>7.4. The </span><strong><span>GameTreeNode</span></strong><span> Class</span></h3><p><span>Instances of this class will represent single nodes of the game tree. For performance reasons, these nodes will </span><em><span>not</span></em><span> store the game board represented; instead, they will store the play that led to this node. Using this play for each node in a path from the root, we will be able to simulate a game from the current board position. </span></p><p><span>This class will need seven </span><strong><span>private</span></strong><span> fields, one </span><strong><span>public</span></strong><span> property, two </span><strong><span>public</span></strong><span> constructors, three </span><strong><span>public</span></strong><span> methods, and at least four </span><strong><span>private</span></strong><span> methods. The fields, property, constructors, </span><strong><span>public</span></strong><span> methods, and one of the </span><strong><span>private</span></strong><span> methods are described in what follows. You will need to break the code into at least three other </span><strong><span>private</span></strong><span> methods.</span></p><h4 id='741-fields-and-property'><span>7.4.1. Fields and property</span></h4><p><span>You will need the following </span><strong><span>private</span></strong><span> fields:</span></p><ul><li><span>A </span><strong><span>static readonly float</span></strong><span> to store the value of a win (1).</span></li><li><span>A </span><strong><span>static readonly float</span></strong><span> to store the value of a draw (</span><code>0.5f</code><span> - the </span><code>f</code><span> indicates that the value is a </span><strong><span>float</span></strong><span>, rather than a </span><strong><span>double</span></strong><span>).</span></li><li><span>A </span><strong><span>static readonly Random</span></strong><span> to store the random number generator. It should be initialized to a new instance.</span></li></ul><ul><li><span>A </span><strong><span>GameTreeNode[ ]?</span></strong><span> to store this node&#39;s children. This field should be </span><strong><span>null</span></strong><span> initially.</span></li><li><span>An </span><strong><span>int</span></strong><span> to keep track of the number of simulations that have included this node.</span></li><li><span>An </span><strong><span>int</span></strong><span> to keep track of the number of children that have been included in at least one simulation.</span></li><li><span>A </span><strong><span>float</span></strong><span> to keep track of the total score of all simulations that have included this node. This score will be from the perspective of the current player, with a higher value (relative to the number of simulations) indicating a more favorable position.</span></li></ul><p><span>You will also need a </span><strong><span>public (int, int, int, int) Play</span></strong><span> property that gets the play leading to this node (if there is no play leading to this node, the value it gets is unimportant). This property should use the default implementation with no </span><strong><span>set</span></strong><span> accessor.</span></p><h4 id='742-public-constructors'><span>7.4.2. public constructors</span></h4><p><span>One of the two constructors should take no parameters. It will not need to contain any code, but it needs to be present because when another constructor is defined, a no-parameter constructor is not automatically defined.</span></p><p><span>The other constructor needs a single paramter of type </span><strong><span>(int, int, int, int)</span></strong><span> giving the play leading to the node being constructed. It will need to initialize the </span><strong><span>Play</span></strong><span> property to this value.</span></p><h4 id='743-a-private-static-method-to-do-a-random-simulation'><span>7.4.3. A private static method to do a random simulation</span></h4><p><span>This method should take an </span><strong><span>UltimateBoard</span></strong><span> as its only parameter and should return a </span><strong><span>float</span></strong><span> giving the score of the simulation. This score should be from the perspective of the player who played just prior to the beginning of this simulation:</span></p><ul><li><span>0 if this player lost the simulated game.</span></li><li><span>The value of a draw (see </span><a href='#741-fields-and-property'><span>Section 7.4.1. Fields and property</span></a><span>) if the simulated game was a draw.</span></li><li><span>The value of a win (see </span><a href='#741-fields-and-property'><span>Section 7.4.1. Fields and property</span></a><span>) if this player won the simulated game.</span></li></ul><p><span>Although the stored portion of the game tree is not used by this method, it is nevertheless traversing a path through the portion of the game tree that is not stored. For this reason, this method should be recursive. The base case occurs when the game on the given board is over. In this case, you should return the value for either a win or a draw, depending on whether the game has been won (if it has, it was won by the player who just played).</span></p><p><span>Otherwise, you will need to get the available plays from the given board and randomly select one of them. To do the random selection, call the random number generator&#39;s </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.random.next?view=net-6.0#system-random-next(system-int32)'><strong><span>Next</span></strong></a><span> method, using the number of available plays as its parameter. That method will return a random nonnegative integer less than this parameter; hence, the value it returns can be used as an index into the list of available plays. Make this play, and recursively simulate a game on the resulting board. The value returned by the recursive call will be the value of the simulation from the perspective of the player making this randomly-chosen play. This player is the opponent of the player making the play that resulted in the board we were given; hence, we will need to subtract the value returned by the recursive call from the value of a win in order to change it to the perspective of the correct player.</span></p><h4 id='744-a-public-simulate-method'><span>7.4.4. A </span><strong><span>public Simulate</span></strong><span> method</span></h4><p><span>This method should take as its only parameter an </span><strong><span>UltimateBoard</span></strong><span> giving the board position at this node. It should return a </span><strong><span>float</span></strong><span> giving the score of a simulation, where the score is as defined for the above method. First, a simulation needs to be done to compute a score for that simulation. There are three cases governing how this simulation should be done:</span></p><ul><li><strong><span>Case 1:</span></strong><span> This node has not yet been used in any simulation. In this case, do a random simulation from this node. </span></li><li><strong><span>Case 2:</span></strong><span> The game on the given board is over. In this case, determine the score of the simulation as in the above method.</span></li><li><strong><span>Case 3:</span></strong><span> Otherwise, first make sure this node has children (i.e., that the array of children is non-</span><strong><span>null</span></strong><span>); if not, get the available plays from the given board position, create a new array of the same size for the children, and construct a new node for each available play. Then get the child to use for the simulation, as outlined below. Make the play stored in this child to the given board. Recursively run a simulation on this child using the resulting board. The score returned will be from the perspective of the wrong player; hence, it will need to be corrected as in the above method. </span></li></ul><p><span>After the simulation has been completed, add the score for the simulation to the score for this node, and increment the number of simulations for this node. Then return the score of the simulation.</span></p><p><span>For Case 3 above, we need to decide which child to use for the simulation. There are two cases to consider. If the number of children that have been included in at least one simulation is less than the number of children, use the first child that has not been included in a simulation (the number of children that have been included in a simulation can be used to index into the array of children to obtain this child). In this case, the number of children that have been included in a simulation will need to be incremented. Otherwise, you will need to make a selection that prefers children that appear more promising, also exploring all the children enough to get trustworthy estimates of how promising they are. To do this, find the child that maximizes the value of the following formula:</span></p><div contenteditable="false" spellcheck="false" class="mathjax-block md-end-block md-math-block md-rawblock" id="mathjax-n545" cid="n545" mdtype="math_block" data-math-tag-before="0" data-math-labels="[]" data-math-tag-after="0"><div class="md-rawblock-container md-math-container" contenteditable="false" tabindex="-1"><mjx-container class="MathJax" jax="SVG" display="true" style="position: relative;"><svg xmlns="http://www.w3.org/2000/svg" width="14.203ex" height="5.566ex" role="img" focusable="false" viewBox="0 -1711.8 6277.8 2460" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" style="vertical-align: -1.693ex;"><defs><path id="MJX-4-TEX-I-1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"></path><path id="MJX-4-TEX-I-1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path><path id="MJX-4-TEX-N-2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path><path id="MJX-4-TEX-S3-221A" d="M424 -948Q422 -947 313 -434T202 80L170 31Q165 24 157 10Q137 -21 137 -21Q131 -16 124 -8L111 5L264 248L473 -720Q473 -717 727 359T983 1440Q989 1450 1001 1450Q1007 1450 1013 1445T1020 1433Q1020 1425 742 244T460 -941Q458 -950 439 -950H436Q424 -950 424 -948Z"></path><path id="MJX-4-TEX-N-32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path><path id="MJX-4-TEX-N-6C" d="M42 46H56Q95 46 103 60V68Q103 77 103 91T103 124T104 167T104 217T104 272T104 329Q104 366 104 407T104 482T104 542T103 586T103 603Q100 622 89 628T44 637H26V660Q26 683 28 683L38 684Q48 685 67 686T104 688Q121 689 141 690T171 693T182 694H185V379Q185 62 186 60Q190 52 198 49Q219 46 247 46H263V0H255L232 1Q209 2 183 2T145 3T107 3T57 1L34 0H26V46H42Z"></path><path id="MJX-4-TEX-N-6E" d="M41 46H55Q94 46 102 60V68Q102 77 102 91T102 122T103 161T103 203Q103 234 103 269T102 328V351Q99 370 88 376T43 385H25V408Q25 431 27 431L37 432Q47 433 65 434T102 436Q119 437 138 438T167 441T178 442H181V402Q181 364 182 364T187 369T199 384T218 402T247 421T285 437Q305 442 336 442Q450 438 463 329Q464 322 464 190V104Q464 66 466 59T477 49Q498 46 526 46H542V0H534L510 1Q487 2 460 2T422 3Q319 3 310 0H302V46H318Q379 46 379 62Q380 64 380 200Q379 335 378 343Q372 371 358 385T334 402T308 404Q263 404 229 370Q202 343 195 315T187 232V168V108Q187 78 188 68T191 55T200 49Q221 46 249 46H265V0H257L234 1Q210 2 183 2T145 3Q42 3 33 0H25V46H41Z"></path><path id="MJX-4-TEX-N-2061" d=""></path><path id="MJX-4-TEX-I-1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></defs><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mi" transform="translate(285.5,676)"><use data-c="1D460" xlink:href="#MJX-4-TEX-I-1D460"></use></g><g data-mml-node="mi" transform="translate(220,-686)"><use data-c="1D45B" xlink:href="#MJX-4-TEX-I-1D45B"></use></g><rect width="800" height="60" x="120" y="220"></rect></g><g data-mml-node="mo" transform="translate(1262.2,0)"><use data-c="2B" xlink:href="#MJX-4-TEX-N-2B"></use></g><g data-mml-node="msqrt" transform="translate(2262.4,0)"><g transform="translate(1020,0)"><g data-mml-node="mfrac"><g data-mml-node="mrow" transform="translate(220,676)"><g data-mml-node="mn"><use data-c="32" xlink:href="#MJX-4-TEX-N-32"></use></g><g data-mml-node="mi" transform="translate(666.7,0)"><use data-c="6C" xlink:href="#MJX-4-TEX-N-6C"></use><use data-c="6E" xlink:href="#MJX-4-TEX-N-6E" transform="translate(278,0)"></use></g><g data-mml-node="mo" transform="translate(1500.7,0)"><use data-c="2061" xlink:href="#MJX-4-TEX-N-2061"></use></g><g data-mml-node="TeXAtom" data-mjx-texclass="ORD" transform="translate(1667.3,0)"><g data-mml-node="mi"><use data-c="1D441" xlink:href="#MJX-4-TEX-I-1D441"></use></g></g></g><g data-mml-node="mi" transform="translate(1197.7,-686)"><use data-c="1D45B" xlink:href="#MJX-4-TEX-I-1D45B"></use></g><rect width="2755.3" height="60" x="120" y="220"></rect></g></g><g data-mml-node="mo" transform="translate(0,201.8)"><use data-c="221A" xlink:href="#MJX-4-TEX-S3-221A"></use></g><rect width="2995.3" height="60" x="1020" y="1591.8"></rect></g></g></g></svg><mjx-assistive-mml unselectable="on" display="block"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mfrac><mi>s</mi><mi>n</mi></mfrac><mo>+</mo><msqrt><mfrac><mrow><mn>2</mn><mi>ln</mi><mo data-mjx-texclass="NONE">⁡</mo><mrow data-mjx-texclass="ORD"><mi>N</mi></mrow></mrow><mi>n</mi></mfrac></msqrt></math></mjx-assistive-mml></mjx-container></div></div><p><span>where:</span></p><ul><li><em><span>s</span></em><span> is the total score of all simulations using the child;</span></li><li><em><span>n</span></em><span> is the number of simulations using the child; and</span></li><li><em><span>N</span></em><span> is the number of simulations using the parent of the child (i.e., the current node).</span></li></ul><p><span>The first term above is the average score of all simulations involving the child; hence, it will give preference to nodes that tend to score better. Because the numerator under the square root is the same for all children, the second term will give preference to those children that have been used in fewer simulations. For better performance, the 2 ln </span><em><span>N</span></em><span> term should be computed prior to the loop so that it won&#39;t need to be recomputed each iteration. Use </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.math.log?view=net-6.0'><strong><span>Math.Log</span></strong></a><span> to compute the natural logarithm and </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.math.sqrt?view=net-6.0'><strong><span>Math.Sqrt</span></strong></a><span> to compute the square root. Because both of these methods return </span><strong><span>double</span></strong><span>s, at some point the results will need to be cast to </span><strong><span>float</span></strong><span>. Because the selection using this formula is made only when </span><em><span>n</span></em><span> </span><span>&gt;</span><span> 0 for each child, and hence when </span><em><span>N</span></em><span> </span><span>&gt;</span><span> 0, both terms above will always be nonnegative; hence, the max can be initialized to any negative value.</span></p><h4 id='745-a-public-getbestchild-method'><span>7.4.5. A </span><strong><span>public GetBestChild</span></strong><span> method</span></h4><p><span>This method needs no parameters and should return the </span><strong><span>GameTreeNode</span></strong><span> giving the child representing the best play. Specifically, it should return the child used in the most simulations. (This may seem a bit counterintuitive, but the child involved in the most simulations will usually be the most promising child. Even when it is not, it will be one of the most promising, and because it was involved in more simulations, we have higher confidence in its being promising.) If there are no children (i.e., the array of children is </span><strong><span>null</span></strong><span>), throw an </span><strong><span>InvalidOperationException</span></strong><span>.</span></p><h4 id='746-a-public-getchild-method'><span>7.4.6. A </span><strong><span>public GetChild</span></strong><span> method</span></h4><p><span>This method should take as its parameters an </span><strong><span>(int, int, int, int)</span></strong><span> describing a play and an </span><strong><span>UltimateBoard</span></strong><span> giving the current board position. It should return a </span><strong><span>GameTreeNode</span></strong><span> referring to the child corresponding to that play. First, make sure that this node has children, as in </span><strong><span>Case 3</span></strong><span> of </span><a href='#744-a-public-simulate-method'><span>Section 7.4.4. A public Simulate method</span></a><span>. You will then need to iterate through the children, looking for the one that contains the given play. If you don&#39;t find one, throw an </span><strong><span>InvalidOperationException</span></strong><span>.</span></p><h3 id='75-the-userinterface-class'><span>7.5. The </span><strong><span>UserInterface</span></strong><span> Class</span></h3><p><span>This class will set up the GUI and interact with the user. Besides the controls defined in the Design window, will will need to define 20 </span><strong><span>private</span></strong><span> fields, one event handler, and at least five additional </span><strong><span>private</span></strong><span> methods. You will also need to modify the constructor. The fields, event handler, and constructor are described in what follows. You will need to decide how to break the code into at least five more </span><strong><span>private</span></strong><span> methods.</span></p><h4 id='751-private-fields'><span>7.5.1. private fields</span></h4><p><span>You will need to define the following </span><strong><span>private</span></strong><span> fields:</span></p><ul><li><p><span>A </span><strong><span>private const string</span></strong><span> giving the string to use to show plays by the first player (&quot;X&quot;).</span></p></li><li><p><span>A </span><strong><span>private const string</span></strong><span> giving the string to use to show plays by the second player (&quot;O&quot; - a letter, not a digit);</span></p></li><li><p><span>A </span><strong><span>private const int</span></strong><span> giving the font size, in pixels, to use within boards that have not yet been won (30).</span></p></li><li><p><span>A </span><strong><span>private const int</span></strong><span> giving the width and height of each button within boards that have not yet been won. This value should be the above constant, multiplied by 2.</span></p></li><li><p><span>A </span><strong><span>private static readonly Font</span></strong><span> giving the font to use within boards that have not yet been won. Initialize this field by passing the following parameters to the </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.drawing.font.-ctor?view=windowsdesktop-6.0#system-drawing-font-ctor(system-drawing-fontfamily-system-single-system-drawing-fontstyle-system-drawing-graphicsunit)'><span>constructor</span></a><span>:</span></p><ul><li><strong><span>FontFamily.GenericSansSerif</span></strong></li><li><span>The size of the font to use (see above)</span></li><li><strong><span>GraphicsUnit.Pixel</span></strong></li></ul></li><li><p><span>A </span><strong><span>private static readonly int</span></strong><span> giving the font size, in pixels, to use for boards that have been won. This value should be the font size for the above font, multiplied by the number of rows in a board (use the appropriate constant from the </span><strong><span>TicTacToeBoard</span></strong><span> class).</span></p></li><li><p><span>A </span><strong><span>private static readonly int</span></strong><span> giving the width and height of each button representing a won board. This value should be the size of the smaller buttons, multiplied by the number of rows in a board.</span></p></li><li><p><span>A </span><strong><span>private static readonly Font</span></strong><span> giving the font to use on buttons representing won boards. Initialize this font as the other font above is initialized, using the appropriate font size.</span></p></li><li><p><span>A </span><strong><span>private static readonly Padding</span></strong><span> to use for the margins of a control that needs no margin. Initialize this field by passing 0 to the </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.padding.-ctor?view=windowsdesktop-6.0#system-windows-forms-padding-ctor(system-int32)'><span>constructor</span></a><span>.</span></p></li><li><p><span>A </span><strong><span>private static readonly Padding</span></strong><span> to use for the margins of the smaller boards. Initialize this field as above, but using 2 as the parameter.</span></p></li><li><p><span>A </span><strong><span>private const int</span></strong><span> giving the number of simulations to use to find the computer&#39;s plays (50000).</span></p></li><li><p><span>A </span><strong><span>private const string</span></strong><span> giving the status message to display when it is the computer&#39;s turn (&quot;My turn.&quot;).</span></p></li><li><p><span>A </span><strong><span>private const string</span></strong><span> giving the status message to display when it is the user&#39;s turn (&quot;Your turn.&quot;).</span></p></li><li><p><span>A </span><strong><span>private const string</span></strong><span> giving the status message to display when the computer has won (&quot;I win!&quot;).</span></p></li><li><p><span>A </span><strong><span>private const string</span></strong><span> giving the status message to display when the user has won (&quot;You win!&quot;).</span></p></li><li><p><span>A </span><strong><span>private const string</span></strong><span> giving the status message to display when the game is a draw (&quot;The game is a draw.&quot;).</span></p></li><li><p><span>A </span><strong><span>private readonly string</span></strong><span> giving the text used to display a play made by the user. You will need to initialize this in the constructor. Note that because this field is </span><strong><span>readonly</span></strong><span>, you will need to initialize it within the constructor itself, not within a method called by the constructor.</span></p></li><li><p><span>A </span><strong><span>private readonly string</span></strong><span> giving the text used to display a play made by the computer. You will need to initialize this in the constructor.</span></p></li><li><p><span>A </span><strong><span>private readonly UltimateBoard</span></strong><span> in which the current game position will be maintained. It should be initialized to an instance representing a new game.</span></p></li><li><p><span>A </span><strong><span>private GameTreeNode</span></strong><span> storing the root of a portion of the game tree. It should be initialized using the no-parameter constructor, as there is no play leading to it.</span></p></li></ul><h4 id='752-the-constructor'><span>7.5.2. The constructor</span></h4><p><span>You will need to modify the constructor so that, after calling </span><strong><span>InitializeComponent</span></strong><span>, it sets up the remainder of the GUI, determines who will play first, and if the computer will play first, makes the computer&#39;s first play.</span></p><p><span>In order to lay out the buttons and facilitate their access, you will need to arrange </span><strong><span>FlowLayoutPanel</span></strong><span>s and buttons as follows, were dashed lines represent </span><strong><span>FlowLayoutPanel</span></strong><span>s and solid lines represent buttons (spacing between controls is adjusted to show the different controls more distinctly):</span></p><p><img src="tic-tac-toe-layout.jpg" referrerpolicy="no-referrer" alt="The initial layout of the panels and buttons."></p><p><span>Thus, the </span><strong><span>FlowLayoutPanel</span></strong><span> defined via the Design window will contain three </span><strong><span>FlowLayoutPanel</span></strong><span>s, laid out top to bottom, containing the three rows of the large board. Each of these will contain three more </span><strong><span>FlowLayoutPanel</span></strong><span>s, laid out left to right (the default), containing the smaller boards. Each of these will contain three more </span><strong><span>FlowLayoutPanel</span></strong><span>s, laid out top to bottom, containing the rows of each of the small boards. Finally, each of these will contain three buttons, laid out left to right. </span></p><p><span>You will need to set up nested loops to lay out the </span><strong><span>FlowLayoutPanel</span></strong><span>s and </span><strong><span>Button</span></strong><span>s as described above. Set the following properties of each </span><strong><span>FlowLayoutPanel</span></strong><span> you add with code (they should already be set appropriately for the panel you added through the Design window):</span></p><ul><li><strong><span>FlowDirection</span></strong><span>: Either </span><strong><span>FlowDirection.LeftToRight</span></strong><span> or </span><strong><span>FlowDirection.TopDown</span></strong><span>.</span></li><li><strong><span>Margin</span></strong><span>: One of the two </span><strong><span>Padding</span></strong><span> constants (see </span><a href='#751-private-fields'><span>Section 7.5.1. private fields</span></a><span>).</span></li><li><strong><span>AutoSize</span></strong><span>: </span><strong><span>true</span></strong><span>.</span></li><li><strong><span>AutoSizeMode</span></strong><span>: </span><strong><span>AutoSizeMode.GrowAndShrink</span></strong><span>.</span></li><li><strong><span>WrapContents</span></strong><span>: </span><strong><span>false</span></strong><span>.</span></li></ul><p><span>To add a control </span><code>c</code><span> to a </span><strong><span>FlowLayoutPanel</span></strong><span> </span><code>p</code><span>, pass </span><code>c</code><span> to the </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.control.controlcollection.add?view=windowsdesktop-6.0#system-windows-forms-control-controlcollection-add(system-windows-forms-control)'><strong><span>Add</span></strong></a><span> method of </span><code>p</code><span>&#39;s </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.control.controls?view=windowsdesktop-6.0#system-windows-forms-control-controls'><strong><span>Controls</span></strong></a><span> property.</span></p><p><span>Set the following properties of each button:</span></p><ul><li><strong><span>Tag</span></strong><span>: An </span><strong><span>(int, int, int, int)</span></strong><span> giving the location of the button. This will allow an event handler for the buttons to be able to determine the location of the button that was clicked.</span></li><li><strong><span>Size</span></strong><span>: A </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.windows.size?view=windowsdesktop-6.0'><strong><span>Size</span></strong></a><span> </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.windows.size.-ctor?view=windowsdesktop-6.0#system-windows-size-ctor(system-double-system-double)'><span>constructed</span></a><span> using the appropriate constant for the width and the height (see </span><a href='#751-private-fields'><span>Section 7.5.1. private fields</span></a><span>).</span></li><li><strong><span>Margin</span></strong><span>: The appropriate </span><strong><span>Padding</span></strong><span> constant.</span></li><li><strong><span>Font</span></strong><span>: The appropriate </span><strong><span>Font</span></strong><span> constant.</span></li></ul><p><span>In </span><a href='#753-an-event-handler-for-the-buttons'><span>Section 7.5.3. An event handler for the buttons</span></a><span>, we will describe an event handler to handle Click events on all the buttons. Here, you will need to associate this event handler with each button. If you have a </span><strong><span>Button</span></strong><span> variable </span><code>b</code><span>, and the name of your event handler is </span><strong><span>ButtonClick</span></strong><span>, you can associate the event handler with the </span><strong><span>Button</span></strong><span> as follows:</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang=""><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang=""><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.52344px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">b.Click += ButtonClick;</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre><p><span>After the panels and buttons are added, you will need to display a </span><strong><span>MessageBox</span></strong><span> to allow the user to choose which player will play first (see </span><a href='#32-behavior-of-the-gui'><span>Section 3.2. Behavior of the GUI</span></a><span>). Based on the user&#39;s response, initialize the </span><strong><span>readonly</span></strong><span> fields that haven&#39;t yet been initialized, and set the status message appropriately.</span></p><p><span>If the computer is to play first, you will also need to make the computer&#39;s first play. Do this as follows:</span></p><ol><li><p><span>Disable all the buttons. You will need to set up nested </span><strong><span>foreach</span></strong><span> loops to iterate through the </span><strong><span>Control</span></strong><span>s within the </span><strong><span>Controls</span></strong><span> property of each of the </span><strong><span>FlowLayoutPanel</span></strong><span>s (which are themselves </span><strong><span>Control</span></strong><span>s). Within the innermost loop, the </span><strong><span>Control</span></strong><span> will be a </span><strong><span>Button</span></strong><span>, which you can disable.</span></p></li><li><p><span>Repeatedly simulate games from the current board position. The number of simulations should be the value given in the appropriate constant (see </span><a href='#751-private-fields'><span>Section 7.5.1. private fields</span></a><span>). For each simulation, use a </span><em><span>copy</span></em><span> of the current board so that you don&#39;t lose the current board position.</span></p></li><li><p><span>Get the best child of the root of the game tree, and play it on the </span><strong><span>UltimateBoard</span></strong><span>.</span></p></li><li><p><span>Set the text of the appropriate button to indicate the computer&#39;s play. You can use the components of the tuple describing the play as indices into the </span><strong><span>Controls</span></strong><span> properties of the various </span><strong><span>FlowLayoutPanel</span></strong><span>s; for example, if the </span><strong><span>FlowLayoutPanel</span></strong><span> defined via the Design window is called </span><code>uxBoard</code><span>, then you can access the button at location (</span><em><span>i</span></em><span>, </span><em><span>j</span></em><span>, </span><em><span>m</span></em><span>, </span><em><span>n</span></em><span>) with the following expression, which has type </span><strong><span>Control</span></strong><span> (a supertype of both </span><strong><span>FlowLayoutPanel</span></strong><span> and </span><strong><span>Button</span></strong><span>):</span></p><pre class="md-fences md-end-block ty-contain-cm modeLoaded" spellcheck="false" lang="c#"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap" lang="c#"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.52344px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;"><div class="CodeMirror-activeline-background CodeMirror-linebackground"></div><div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">uxBoard</span>.<span class="cm-variable">Controls</span>[<span class="cm-variable">i</span>].<span class="cm-variable">Controls</span>[<span class="cm-variable">j</span>].<span class="cm-variable">Controls</span>[<span class="cm-variable">m</span>].<span class="cm-variable">Controls</span>[<span class="cm-variable">n</span>]</span></pre></div></div></div></div></div></div><div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 23px;"></div><div class="CodeMirror-gutters" style="display: none; height: 23px;"></div></div></div></pre></li><li><p><span>Set the root of the game tree to the child obtained in Step 3.</span></p></li><li><p><span>Enable the button corresponding to each available play.</span></p></li><li><p><span>Set the status message to indicate that it&#39;s now the user&#39;s turn.</span></p></li></ol><h4 id='753-an-event-handler-for-the-buttons'><span>7.5.3. An event handler for the buttons</span></h4><p><span>This method will need the following parameters:</span></p><ul><li><span>An </span><strong><span>object?</span></strong><span> giving the button that was clicked.</span></li><li><span>An </span><strong><span>EventArgs</span></strong><span> giving information about the event (you won&#39;t use this, but it needs to be here).</span></li></ul><p><span>It should return nothing. You will first need to cast the </span><strong><span>object?</span></strong><span> parameter to </span><strong><span>Button</span></strong><span> (it won&#39;t be </span><strong><span>null</span></strong><span> because there must have been a </span><strong><span>Button</span></strong><span> clicked to signal the event). Then set the text of this button to the symbol used by the human player. You will then need to get the button&#39;s location from its </span><strong><span>Tag</span></strong><span> property (note that this property has type </span><strong><span>object</span></strong><span>; hence, you will need to cast it to </span><strong><span>(int, int, int, int)</span></strong><span>). Then get the child corresponding to this play from the game tree. You can then make this play to the </span><strong><span>UltimateBoard</span></strong><span>. Then determine whether the sub-board on which the play was made has been won - if so, clear the panel containing this sub-board, and add a new large button with the following properties:</span></p><ul><li><strong><span>Size</span></strong><span>: the appropriate </span><strong><span>Size</span></strong><span> constant.</span></li><li><strong><span>Font</span></strong><span>: the appropriate </span><strong><span>Font</span></strong><span> constant.</span></li><li><strong><span>Text</span></strong><span>: the text used for the user&#39;s plays</span></li><li><strong><span>Margin</span></strong><span>: the appropriate </span><strong><span>Padding</span></strong><span> constant.</span></li><li><strong><span>Enabled</span></strong><span>: </span><strong><span>false</span></strong><span>.</span></li></ul><p><span>Then determine whether the game is over. If so, disable all the buttons, and set the status appropriately. If not, update the game tree to the child corresponding to the play made, and make a play for the computer player as described in </span><a href='#752-the-constructor'><span>Section 7.5.2. The constructor</span></a><span>, with the following modifications:</span></p><ul><li><span>After Step 1, set the status to indicate that it is the computer player&#39;s turn, and call </span><a href='https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.control.update?view=windowsdesktop-6.0#system-windows-forms-control-update'><strong><span>Update</span></strong></a><span> (a method that the </span><strong><span>UserInterface</span></strong><span> class </span><em><span>inherits</span></em><span> from the </span><strong><span>Form</span></strong><span> class) to cause the form to be redrawn. (This step isn&#39;t needed for the first play of the game because the GUI won&#39;t be visible yet.)</span></li><li><span>After Step 4, determine whether the sub-board on which the play was made has been won. If so, replace this sub-board with a large button as described above, but set its </span><strong><span>Text</span></strong><span> property to the text used for the computer&#39;s plays. Then determine whether the game is over, and handle this case as above. Only do Steps 5-7 if the game isn&#39;t over. (These changes aren&#39;t necessary for the first play of the game because neither a sub-board nor the game can be won by the first play).</span></li></ul><p><span>Note that while the above changes aren&#39;t necessary for the first play of the game, they can be incorporated into the first play without having any noticeable effect.</span></p><h2 id='8-testing-and-performance'><span>8. Testing and Performance</span></h2><p><span>Because testing and debugging this program can be a challenge, unit tests are provided to help you. Tests for the </span><strong><span>TicTacToeBoard</span></strong><span>, </span><strong><span>UltimateBoard</span></strong><span>, and </span><strong><span>GameTreeNode</span></strong><span> classes are provided in separate files. If a test fails, read the comments for that test to help you to find the cause of the error. Passing all of these tests will not guarantee that each of these classes is correct, but hopefully they will help you to find any errors you might have.</span></p><p><span>No tests for the </span><strong><span>UserInterface</span></strong><span> class are provided. Instead, you will need to run the program to see that it is behaving according to the description given in </span><a href='#32-behavior-of-the-gui'><span>Section 3.2. Behavior of the GUI</span></a><span>. You can play your program against </span><a href='https://michaelxing.com/UltimateTTT/v3/'><span>this program</span></a><span> by running both programs and letting one program play first and the other second, then mimicking each program&#39;s play on the other program&#39;s user interface. Your program should be able to win fairly consistently against the other program&#39;s first two levels. To see what your program does when it loses, play against the other program at its highest level. The best way to play a game to a draw is to open your program in a second instance of Visual Studio and run the program against itself (just be sure to close one instance of Visual Studio before making any edits).</span></p><p><span>Performance will vary depending on the machine, but on a reasonably fast machine, each move should be made within one or two seconds. Tablets may be a little slower.</span></p><h2 id='9-submitting-your-solution'><span>9. Submitting Your Solution</span></h2><p><span>Be sure to </span><strong><span>commit</span></strong><span> all your changes, then </span><strong><span>push</span></strong><span> your commits to your GitHub repository. Make sure the </span><strong><span>Ksu.Cis300.UltimateTicTacToe</span></strong><span> folder in your repository contains all seven .cs files, as we can only grade what is present in the repository. Then submit the </span><em><span>entire URL</span></em><span> of the commit that you want graded. </span></p><p><strong><span>Note:</span></strong><span> The repositories for the homework assignments for this class are set up to use GitHub&#39;s autograding feature to track push times. No actual testing/grading is done, but after each push, the GitHub page for the repository will show a green check mark on the line indicating the latest commit. Clicking that check mark will display a popup indicating that all checks have passed, regardless of whether your program works. You may also get an email indicating that all checks have passed. The only purpose for using the autograding feature in this way is to give us a backup indication of your push times in case you submitted your assignment incorrectly.</span></p></div></div>
+</body>
+</html>
