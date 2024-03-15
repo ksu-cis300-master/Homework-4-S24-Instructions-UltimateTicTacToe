@@ -20,7 +20,7 @@ Players take turns placing their symbols into one of the unoccupied squares of o
 4. If a player wins three smaller boards in a straight line, horizontally, vertically, or diagonally, that player wins.
 5. If at some point no legal plays remain and neither player has won, the game is a draw.
 
-Examples of these rules can be found [here](https://mathwithbaddrawings.com/2013/06/16/ultimate-tic-tac-toe/) and in the [demo video]().
+Examples of these rules can be found [here](https://mathwithbaddrawings.com/2013/06/16/ultimate-tic-tac-toe/) and in the [demo video](https://youtu.be/e0Xc53K4EY0).
 
 The program must implement game play against a user. The user should be able to decide who plays first. Only one level of difficulty is required - this level should challenge a novice player. However, the implementation should be adaptable so that different difficulty levels could be readily incorporated into future versions. When the game is over, an indication of the game's outcome should be given.
 
@@ -30,7 +30,7 @@ Create a GitHub repository using the link provided in the Canvas assignment and 
 
 ## 3. User Interface
 
-In this section, we will describe the look and behavior of the GUI that you are to design. We will first outline what you will need to build using the Design window. Then we will describe the required behavior of the GUI. You will need to provide code to implement this behavior (see [Section 7. Coding Requirements](#7. Coding Requirements)). The [demo video]() also illustrates the expected look and behavior.
+In this section, we will describe the look and behavior of the GUI that you are to design. We will first outline what you will need to build using the Design window. Then we will describe the required behavior of the GUI. You will need to provide code to implement this behavior (see [Section 7. Coding Requirements](#7. Coding Requirements)). The [demo video](https://youtu.be/e0Xc53K4EY0) also illustrates the expected look and behavior.
 
 ### 3.1. Manual User Interface Design
 
@@ -52,8 +52,6 @@ Below the **StatusStrip** is a **FlowLayoutPanel** (you can't see it in the abov
 These changes will cause the panel's size to be changed to 0x0. If you need to select this panel at some point, you'll need to use the `Tab` key to cycle through the controls on the form.
 
 ### 3.2. Behavior of the GUI
-
-
 
 Your finished program should begin by opening a **MessageBox** resembling the following:
 
@@ -130,7 +128,7 @@ The underscores in the above example are used when we don't need all of the comp
 
 Requirements for each of the types shown in the class diagram above are given in what follows. In some cases, you are required to break the code into additional **private** methods. Look for places where code duplication can be avoided by defining another method, or where long methods can be broken into shorter methods. 
 
-Try to structure your code so that overriding compiler warning about possible **NullReferenceException**s is unnecessary. Specifically, define variables and return types to be nullable only if you want to be able to store/return **null**. Then try to structure the code so that the compiler can tell when a value is nonnull. The model solution contains only one instance of overriding such warnings.
+Try to structure your code so that overriding compiler warnings about possible **NullReferenceException**s is unnecessary. Specifically, define variables and return types to be nullable only if you want to be able to store/return **null**. Then try to structure the code so that the compiler can tell when a value is non-**null**. The model solution contains only one instance of overriding such warnings.
 
 ### 7.1. The **Player** Enumeration
 
@@ -154,21 +152,21 @@ You will then need the following **private** fields:
 - A **static readonly int** giving the number of squares on the board. This should be the number of rows multiplied by itself.
 - A **Player[&nbsp;,&nbsp;]** giving the content of each square of the board. It should be initialized so that its number of rows and columns is given by **Rows**.
 
-- A **readonly int[&nbsp;,&nbsp;]** to keep track of how many times each of the two actual players (i.e., not **Player.Draw**) has played to each of the three rows. This is an array of arrays - it contains three arrays, each having two elements. Element *i* pertains to row *i*, so that its two elements indicate how many times the first and second player, respectively, have played to row *i*. We use an array of arrays, rather than a 2-dimensional array, so that any of the 2-element arrays it contains may be passed to one of the methods described below. It can be initialized to a new **int\[3\]\[&nbsp;\]** here, but each of the 2-element arrays will need to be created in the constructor. Note that even though it is **readonly**, its contents can be changed - only the reference stored in the field itself cannot be changed.
+- A **readonly int\[&nbsp;\]\[&nbsp;\]** to keep track of how many times each of the two actual players (i.e., not **Player.Draw**) has played to each of the three rows. This is an array of arrays - it contains three arrays, each having two elements. The first index refers to a row, so that the two elements of this array indicate how many times the first and second player, respectively, have played to that row. We use an array of arrays, rather than a 2-dimensional array, so that any of the 2-element arrays it contains may be passed to one of the methods described below. It can be initialized to a new **int\[Rows\]\[&nbsp;\]** here, but each of the 2-element arrays will need to be created in the constructor. Note that even though it is **readonly**, its contents can be changed - only the reference stored in the field itself cannot be changed.
 - An **int\[&nbsp;\]\[&nbsp;\]** to keep track of how many times each of the two actual players has played to each of the three columns.
-- A 2-element **int[&nbsp;]** to keep track of how many times each of the two actual players has played to the major diagonal (i.e., the one beginning at the upper-left corner).
-- A 2-element **int[&nbsp;]** to keep track of how many times each of the two actual players has played to the minor diagonal (i.e., the one beginning at the upper-right corner).
+- An **int[&nbsp;]** to keep track of how many times each of the two actual players has played to the major diagonal (i.e., the one beginning at the upper-left corner). It should be initialized so that its size is given by the constant giving the number of players.
+- An **int[&nbsp;]** to keep track of how many times each of the two actual players has played to the minor diagonal (i.e., the one beginning at the upper-right corner). It should be initializes like the above array.
 - An **int** to keep track of the number of plays made to this board.
 
 Finally, you will need two **public** properties, **IsWon** and **IsOver**, that each get **bool** values indicating whether one of the players has won and whether the game is over, respectively. Note that if a game has been won, it must be over, but that the converse is not necessarily true - if a game is drawn, it is over but hasn't been won. Each of these should be implemented using the default implementation with a **get** accessor and a **private set** accessor.
 
-#### 7.2.2. public constructors
+#### 7.2.2. **public** constructors
 
 Each constructor must be named the same as the type it is constructing (i.e., **TicTacToeBoard** in this case). Multiple constructors can be defined by giving different parameter lists to each one (i.e., different sequences of parameter types).
 
-The first constructor will take no parameters. It will be used to construct an empty board. It will need to initialize each element of the 2-dimensional array to **Player.None**. It will also need to construct new 2-element arrays for each element of the two arrays of arrays (each of these arrays of arrays will first need to be initialized to a new **int\[3\]\[&nbsp;\]**, either here or in an initializer on the field declaration).
+The first constructor will take no parameters. It will be used to construct an empty board. It will need to initialize each element of the 2-dimensional array to **Player.None**. It will also need to construct new arrays for each element of the two arrays of arrays (each of these arrays of arrays will first need to be initialized to a new **int\[Rows\]\[&nbsp;\]**, either here or in an initializer on the field declaration). Use the appropriate constant to define the size of each of the **int[&nbsp;]**s.
 
-The second constructor will take a single parameter of type **TicTacToeBoard**. It will be used to construct a copy of the given board. Thus, it will need to copy the contents of all the fields and properties of the given board to its own fields and properties. You can use [**Array.Copy**](https://docs.microsoft.com/en-us/dotnet/api/system.array.copy?view=netframework-4.7.2#System_Array_Copy_System_Array_System_Array_System_Int32_) to copy the contents of a 2-dimensional array to another 2-dimensional array of the same size. In this case, the array's **Length** property gives the total number of elements in the array, which is needed for the third parameter to the **Array.Copy** method. Either this method or the source array's [**CopyTo**](https://docs.microsoft.com/en-us/dotnet/api/system.array.copyto?view=netframework-4.7.2#System_Array_CopyTo_System_Array_System_Int32_) method may be used to copy the contents of a 1-dimensional array to another. To copy the arrays of arrays, a bit more work is needed. You will need to iterate through the 3 elements, and for each of these elements, either construct a new 2-element array and copy the contents of the source array into it, or use the source array's [**Clone**](https://docs.microsoft.com/en-us/dotnet/api/system.array.clone?view=netframework-4.7.2#System_Array_Clone) method, which returns an **object** that is a copy of the source array (note that because the method returns an **object**, you will need to cast it to type **int[&nbsp;]**). Note that the **Clone** method cannot be used to copy the entire array of arrays because it only makes a *shallow* copy; i.e., the 3 elements in the clone will each contain a reference to one of the arrays contained in the source array.
+The second constructor will take a single parameter of type **TicTacToeBoard**. It will be used to construct a copy of the given board. Thus, it will need to copy the contents of all the non-**const**, non-**static**, fields and properties of the given board to its own fields and properties. You can use [**Array.Copy**](https://learn.microsoft.com/en-us/dotnet/api/system.array.copy?view=net-6.0#system-array-copy(system-array-system-array-system-int32)) to copy the contents of a 2-dimensional array to another 2-dimensional array of the same size. In this case, the array's **Length** property gives the total number of elements in the array, which is needed for the third parameter to the **Array.Copy** method. Either this method or the source array's [**CopyTo**](https://learn.microsoft.com/en-us/dotnet/api/system.array.copyto?view=net-6.0#system-array-copyto(system-array-system-int32)) method may be used to copy the contents of a 1-dimensional array to another. To copy the arrays of arrays, a bit more work is needed. You will need to iterate through the 3 elements, and for each of these elements, either construct a new 2-element array and copy the contents of the source array into it, or use the source array's [**Clone**](https://learn.microsoft.com/en-us/dotnet/api/system.array.clone?view=net-6.0#system-array-clone) method, which returns an **object** that is a copy of the source array (note that because the method returns an **object**, you will need to cast it to type **int[&nbsp;]**). Note that the **Clone** method cannot be used to copy the entire array of arrays because it only makes a *shallow* copy; i.e., the 3 elements in the clone will each contain a reference to one of the arrays contained in the source array.
 
 #### 7.2.3. A **public GetAvailablePlays** method
 
@@ -191,15 +189,15 @@ Instances of this class will represent Ultimate Tic-Tac-Toe boards. It will need
 You will need the following **private** fields:
 
 - A **readonly TicTacToeBoard[&nbsp;,&nbsp;]** containing the smaller boards. This field needs to be initialized to a new array whose number of rows and columns is given by the appropriate constant from the **TicTacToeBoard** class.
-- A **TicTacToeBoard** representing the larger board. It needs to be initialized to an empty board.
+- A **readonly TicTacToeBoard** representing the larger board. It needs to be initialized to an empty board.
 - A **bool** indicating whether the board represents a new game. This field should initially be **true**.
-- An **int** giving row (within a smaller board) of the last play made. If the board represents a new game, the value of this field is unimportant, as it won't be used in this case.
+- An **int** giving the row (within a smaller board) of the last play made. If the board represents a new game, the value of this field is unimportant, as it won't be used in this case.
 - An **int** giving the column (within a smaller board) of the last play made. If the board represents a new game, the value of this field is unimportant, as it won't be used in this case.
 - The **Player** whose turn it is to play (initially **Player.First**).
 
 It will also need **public** properties **IsOver** and **IsWon**. They should each have **get** accessors that return the corresponding property from the larger **TicTacToeBoard**. 
 
-#### 7.3.2. public constructors
+#### 7.3.2. **public** constructors
 
 One constructor should take no parameters and construct a board for a new game. It will need to initialize the elements of the 2-dimensional array to new **TicTacToeBoard**s.
 
@@ -213,7 +211,7 @@ This method should take no parameters and return a **List<(int, int, int, int)>*
 
 This method should take as its only parameter an **(int, int, int, int)** giving the location of the play to be made. It should return nothing. It should first make the given play for the current player to the appropriate smaller board. If this play ends the game on that smaller board, it should record either a win for the current player (if the smaller game was won) or a draw to the larger board. It should then indicate that this game is no longer a new game, save the last two coordinates of the given play as the last play made, and change the current player.
 
-#### 7.3.5. A public IsSubBoardWon method
+#### 7.3.5. A **public** IsSubBoardWon method
 
 This method should take as its parameters two **int**s giving the row and column of a smaller board within the entire board. It should return a **bool** indicating whether that smaller board has been won.
 
@@ -221,7 +219,7 @@ This method should take as its parameters two **int**s giving the row and column
 
 Instances of this class will represent single nodes of the game tree. For performance reasons, these nodes will *not* store the game board represented; instead, they will store the play that led to this node. Using this play for each node in a path from the root, we will be able to simulate a game from the current board position. 
 
-This class will need seven **private** fields, one **public** property, two **public** constructors, three **public** methods, and at least four **private** methods. The fields, property, constructors, **public** methods, and one of the **private** methods are described in what follows. You will need to break the code into at least three other **private** methods.
+This class will need seven **private** fields, one **public** property, one **public** constructor, one **private** constructor, three **public** methods, and at least four **private** methods. The fields, property, constructors, **public** methods, and one of the **private** methods are described in what follows. You will need to break the code into at least three other **private** methods.
 
 #### 7.4.1. Fields and property
 
@@ -236,15 +234,17 @@ You will need the following **private** fields:
 - An **int** to keep track of the number of children that have been included in at least one simulation.
 - A **float** to keep track of the total score of all simulations that have included this node. This score will be from the perspective of the current player, with a higher value (relative to the number of simulations) indicating a more favorable position.
 
+Note that you do *not* need a constant to store the value of a loss, which will be 0. This value is never used explicitly, but is computed when translating a win to the other player's perspective - see [Section 7.4.3. A **private static** method to do a random simulation](#7.4.3. A private static method to do a random simulation) and [Section 7.4.4. A **public** Simulate method](#7.4.4. A public Simulate method) below.
+
 You will also need a **public (int, int, int, int) Play** property that gets the play leading to this node (if there is no play leading to this node, the value it gets is unimportant). This property should use the default implementation with no **set** accessor.
 
-#### 7.4.2. public constructors
+#### 7.4.2. Constructors
 
-One of the two constructors should take no parameters. It will not need to contain any code, but it needs to be present because when another constructor is defined, a no-parameter constructor is not automatically defined.
+The **public** constructor should take no parameters. It will not need to contain any code, but it needs to be present because when another constructor is defined, a no-parameter constructor is not automatically defined.
 
-The other constructor needs a single paramter of type **(int, int, int, int)** giving the play leading to the node being constructed. It will need to initialize the **Play** property to this value.
+The **private** constructor needs a single paramter of type **(int, int, int, int)** giving the play leading to the node being constructed. It will need to initialize the **Play** property to this value.
 
-#### 7.4.3. A private static method to do a random simulation
+#### 7.4.3. A **private static** method to do a random simulation
 
 This method should take an **UltimateBoard** as its only parameter and should return a **float** giving the score of the simulation. This score should be from the perspective of the player who played just prior to the beginning of this simulation:
 
@@ -252,7 +252,7 @@ This method should take an **UltimateBoard** as its only parameter and should re
 - The value of a draw (see [Section 7.4.1. Fields and property](#7.4.1. Fields and property)) if the simulated game was a draw.
 - The value of a win (see [Section 7.4.1. Fields and property](#7.4.1. Fields and property)) if this player won the simulated game.
 
-Although the stored portion of the game tree is not used by this method, it is nevertheless traversing a path through the portion of the game tree that is not stored. For this reason, this method should be recursive. The base case occurs when the game on the given board is over. In this case, you should return the value for either a win or a draw, depending on whether the game has been won (if it has, it was won by the player who just played).
+Although the stored portion of the game tree is not used by this method, the method is nevertheless traversing a path through the portion of the game tree that is not stored. For this reason, this method should be recursive. The base case occurs when the game on the given board is over. In this case, you should return the value for either a win or a draw, depending on whether the game has been won (if it has, it was won by the player who just played).
 
 Otherwise, you will need to get the available plays from the given board and randomly select one of them. To do the random selection, call the random number generator's [**Next**](https://learn.microsoft.com/en-us/dotnet/api/system.random.next?view=net-6.0#system-random-next(system-int32)) method, using the number of available plays as its parameter. That method will return a random nonnegative integer less than this parameter; hence, the value it returns can be used as an index into the list of available plays. Make this play, and recursively simulate a game on the resulting board. The value returned by the recursive call will be the value of the simulation from the perspective of the player making this randomly-chosen play. This player is the opponent of the player making the play that resulted in the board we were given; hence, we will need to subtract the value returned by the recursive call from the value of a win in order to change it to the perspective of the correct player.
 
@@ -262,11 +262,11 @@ This method should take as its only parameter an **UltimateBoard** giving the bo
 
 - **Case 1:** This node has not yet been used in any simulation. In this case, do a random simulation from this node. 
 - **Case 2:** The game on the given board is over. In this case, determine the score of the simulation as in the above method.
-- **Case 3:** Otherwise, first make sure this node has children (i.e., that the array of children is non-**null**); if not, get the available plays from the given board position, create a new array of the same size for the children, and construct a new node for each available play. Then get the child to use for the simulation, as outlined below. Make the play stored in this child to the given board. Recursively run a simulation on this child using the resulting board. The score returned will be from the perspective of the wrong player; hence, it will need to be corrected as in the above method. 
+- **Case 3:** Otherwise, first make sure this node has children (i.e., that the array of children is non-**null**); if not, get the available plays from the given board position, create a new array of the same size for the children, and construct a new node for each available play (use the **private** constructor). Then get the child to use for the simulation, as outlined below. Make the play stored in this child to the given board. Recursively run a simulation on this child using the resulting board. The score returned will be from the perspective of the wrong player; hence, it will need to be corrected as in the above method. 
 
 After the simulation has been completed, add the score for the simulation to the score for this node, and increment the number of simulations for this node. Then return the score of the simulation.
 
-For Case 3 above, we need to decide which child to use for the simulation. There are two cases to consider. If the number of children that have been included in at least one simulation is less than the number of children, use the first child that has not been included in a simulation (the number of children that have been included in a simulation can be used to index into the array of children to obtain this child). In this case, the number of children that have been included in a simulation will need to be incremented. Otherwise, you will need to make a selection that prefers children that appear more promising, also exploring all the children enough to get trustworthy estimates of how promising they are. To do this, find the child that maximizes the value of the following formula:
+For Case 3 above, we need to decide which child to use for the simulation. There are two cases to consider. If the number of children that have been included in at least one simulation is less than the number of children, use the first child that has not been included in a simulation (the number of children that have been included in a simulation can be used to index into the array of children to obtain this child). In this case, the number of children that have been included in a simulation will need to be incremented. Otherwise, you will need to make a selection that prefers children that appear more promising, while also ensuring that all the children are involved in enough simulations to get trustworthy estimates of how promising they are. To do this, find the child that maximizes the value of the following formula:
 $$
 \frac{s}{n} + \sqrt{\frac{2 \ln{N}}{n}}
 $$
@@ -284,13 +284,13 @@ This method needs no parameters and should return the **GameTreeNode** giving th
 
 #### 7.4.6. A **public GetChild** method
 
-This method should take as its parameters an **(int, int, int, int)** describing a play and an **UltimateBoard** giving the current board position. It should return a **GameTreeNode** referring to the child corresponding to that play. First, make sure that this node has children, as in **Case 3** of [Section 7.4.4. A public Simulate method](#7.4.4. A public Simulate method). You will then need to iterate through the children, looking for the one that contains the given play. If you don't find one, throw an **InvalidOperationException**.
+This method should take as its parameters an **(int, int, int, int)** describing a play and an **UltimateBoard** giving the current board position. It should return a **GameTreeNode** referring to the child corresponding to that play. First, make sure that this node has children, as in **Case 3** of [Section 7.4.4. A **public** Simulate method](#7.4.4. A public Simulate method). You will then need to iterate through the children, looking for the one that contains the given play. If you don't find one, throw an **ArgumentException**.
 
 ### 7.5. The **UserInterface** Class
 
-This class will set up the GUI and interact with the user. Besides the controls defined in the Design window, will will need to define 20 **private** fields, one event handler, and at least five additional **private** methods. You will also need to modify the constructor. The fields, event handler, and constructor are described in what follows. You will need to decide how to break the code into at least five more **private** methods.
+This class will set up the GUI and interact with the user. Besides the controls defined in the Design window, will will need to define 20 **private** fields, one event handler, and at least five additional **private** methods. You will also need to modify the provided constructor. The fields, event handler, and constructor are described in what follows. You will need to decide how to break the code into at least five more **private** methods.
 
-#### 7.5.1. private fields
+#### 7.5.1. **private** fields
 
 You will need to define the following **private** fields:
 
@@ -305,7 +305,7 @@ You will need to define the following **private** fields:
 - A **private static readonly int** giving the font size, in pixels, to use for boards that have been won. This value should be the font size for the above font, multiplied by the number of rows in a board (use the appropriate constant from the **TicTacToeBoard** class).
 - A **private static readonly int** giving the width and height of each button representing a won board. This value should be the size of the smaller buttons, multiplied by the number of rows in a board.
 - A **private static readonly Font** giving the font to use on buttons representing won boards. Initialize this font as the other font above is initialized, using the appropriate font size.
-- A **private static readonly Padding** to use for the margins of a control that needs no margin. Initialize this field by passing 0 to the [constructor](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.padding.-ctor?view=windowsdesktop-6.0#system-windows-forms-padding-ctor(system-int32)).
+- A **private static readonly Padding** to use for the margins of a control that needs no margin. Initialize this field by passing 0 to the [constructor](https://learn.microsoft.com/en-us/dotnet/api/system.windows.forms.padding.-ctor?view=windowsdesktop-6.0#system-windows-forms-padding-ctor(system-int32)). Most of the controls will use this margin.
 - A **private static readonly Padding** to use for the margins of the smaller boards. Initialize this field as above, but using 2 as the parameter.
 - A **private const int** giving the number of simulations to use to find the computer's plays (50000).
 - A **private const string** giving the status message to display when it is the computer's turn ("My turn.").
@@ -316,13 +316,13 @@ You will need to define the following **private** fields:
 - A **private readonly string** giving the text used to display a play made by the user. You will need to initialize this in the constructor. Note that because this field is **readonly**, you will need to initialize it within the constructor itself, not within a method called by the constructor.
 - A **private readonly string** giving the text used to display a play made by the computer. You will need to initialize this in the constructor.
 - A **private readonly UltimateBoard** in which the current game position will be maintained. It should be initialized to an instance representing a new game.
-- A **private GameTreeNode** storing the root of a portion of the game tree. It should be initialized using the no-parameter constructor, as there is no play leading to it.
+- A **private GameTreeNode** storing the root of a portion of the game tree. It should be initialized to a new node.
 
 #### 7.5.2. The constructor
 
 You will need to modify the constructor so that, after calling **InitializeComponent**, it sets up the remainder of the GUI, determines who will play first, and if the computer will play first, makes the computer's first play.
 
-In order to lay out the buttons and facilitate their access, you will need to arrange **FlowLayoutPanel**s and buttons as follows, were dashed lines represent **FlowLayoutPanel**s and solid lines represent buttons (spacing between controls is adjusted to show the different controls more distinctly):
+In order to lay out the buttons and facilitate their access, you will need to arrange **FlowLayoutPanel**s and buttons as follows, where dashed lines represent **FlowLayoutPanel**s and solid lines represent buttons (spacing between controls is adjusted to show the different controls more distinctly):
 
 ![The initial layout of the panels and buttons.](tic-tac-toe-layout.jpg)
 
@@ -331,7 +331,7 @@ Thus, the **FlowLayoutPanel** defined via the Design window will contain three *
 You will need to set up nested loops to lay out the **FlowLayoutPanel**s and **Button**s as described above. Set the following properties of each **FlowLayoutPanel** you add with code (they should already be set appropriately for the panel you added through the Design window):
 
 - **FlowDirection**: Either **FlowDirection.LeftToRight** or **FlowDirection.TopDown**.
-- **Margin**: One of the two **Padding** constants (see [Section 7.5.1. private fields](#7.5.1. private fields)).
+- **Margin**: One of the two **Padding** constants (see [Section 7.5.1. **private** fields](#7.5.1. private fields)).
 - **AutoSize**: **true**.
 - **AutoSizeMode**: **AutoSizeMode.GrowAndShrink**.
 - **WrapContents**: **false**.
@@ -341,11 +341,11 @@ To add a control `c` to a **FlowLayoutPanel** `p`, pass `c` to the [**Add**](htt
 Set the following properties of each button:
 
 - **Tag**: An **(int, int, int, int)** giving the location of the button. This will allow an event handler for the buttons to be able to determine the location of the button that was clicked.
-- **Size**: A [**Size**](https://learn.microsoft.com/en-us/dotnet/api/system.windows.size?view=windowsdesktop-6.0) [constructed](https://learn.microsoft.com/en-us/dotnet/api/system.windows.size.-ctor?view=windowsdesktop-6.0#system-windows-size-ctor(system-double-system-double)) using the appropriate constant for the width and the height (see [Section 7.5.1. private fields](#7.5.1. private fields)).
+- **Size**: A [**Size**](https://learn.microsoft.com/en-us/dotnet/api/system.windows.size?view=windowsdesktop-6.0) [constructed](https://learn.microsoft.com/en-us/dotnet/api/system.windows.size.-ctor?view=windowsdesktop-6.0#system-windows-size-ctor(system-double-system-double)) using the appropriate constant for the width and the height (see [Section 7.5.1. **private** fields](#7.5.1. private fields)).
 - **Margin**: The appropriate **Padding** constant.
 - **Font**: The appropriate **Font** constant.
 
-In [Section 7.5.3. An event handler for the buttons](#7.5.3. An event handler for the buttons), we will describe an event handler to handle Click events on all the buttons. Here, you will need to associate this event handler with each button. If you have a **Button** variable `b`, and the name of your event handler is **ButtonClick**, you can associate the event handler with the **Button** as follows:
+In [Section 7.5.3. An event handler for the buttons](#7.5.3. An event handler for the buttons), we will describe an event handler to handle Click events on all the buttons. Here, as you add each button, you will need to associate this event handler with it. If you have a **Button** variable `b`, and the name of your event handler is **ButtonClick**, you can associate the event handler with the **Button** as follows:
 
 ```
 b.Click += ButtonClick;
@@ -357,9 +357,9 @@ If the computer is to play first, you will also need to make the computer's firs
 
 1. Disable all the buttons. You will need to set up nested **foreach** loops to iterate through the **Control**s within the **Controls** property of each of the **FlowLayoutPanel**s (which are themselves **Control**s). Within the innermost loop, the **Control** will be a **Button**, which you can disable.
 
-2. Repeatedly simulate games from the current board position. The number of simulations should be the value given in the appropriate constant (see [Section 7.5.1. private fields](#7.5.1. private fields)). For each simulation, use a *copy* of the current board so that you don't lose the current board position.
+2. Repeatedly simulate games from the current board position. The number of simulations should be the value given in the appropriate constant (see [Section 7.5.1. **private** fields](#7.5.1. private fields)). For each simulation, use a *copy* of the current board (use the the appropriate **UltimateBoard** constructor) so that you don't lose the current board position.
 
-3. Get the best child of the root of the game tree, and play it on the **UltimateBoard**.
+3. Get the best child of the root of the game tree, and make the play that leads to this child on the original **UltimateBoard** (i.e., not on a copy used for a simulation).
 
 4. Set the text of the appropriate button to indicate the computer's play. You can use the components of the tuple describing the play as indices into the **Controls** properties of the various **FlowLayoutPanel**s; for example, if the **FlowLayoutPanel** defined via the Design window is called `uxBoard`, then you can access the button at location (*i*, *j*, *m*, *n*) with the following expression, which has type **Control** (a supertype of both **FlowLayoutPanel** and **Button**):
 
@@ -397,7 +397,7 @@ Note that while the above changes aren't necessary for the first play of the gam
 
 ## 8. Testing and Performance
 
-Because testing and debugging this program can be a challenge, unit tests are provided to help you. Tests for the **TicTacToeBoard**, **UltimateBoard**, and **GameTreeNode** classes are provided in separate files. If a test fails, read the comments for that test to help you to find the cause of the error. Passing all of these tests will not guarantee that each of these classes is correct, but hopefully they will help you to find any errors you might have.
+Because testing and debugging this program can be a challenge, unit tests are provided to help you. Tests for the **TicTacToeBoard**, **UltimateBoard**, and **GameTreeNode** classes are provided in separate files. Group the tests first by class, then by trait, and order them alphabetically within these groupings. If a test fails, read the comments for that test to help you to find the cause of the error. Passing all of these tests will not guarantee that each of these classes is correct, but hopefully they will help you to find any errors you might have. Because of the use of random simulations, a test with trait "D: Random Simulation Small Trees" or "E: Random Simulation Large Trees" in **CGameTreeNodeTests** might occasionally fail, even for correct code; however, the probability that this will happen is very small. If one of these tests fails, you might run it again a few times to see if the failure disappears. If it continues to fail, even occasionally, there is likely an error in the code.
 
 No tests for the **UserInterface** class are provided. Instead, you will need to run the program to see that it is behaving according to the description given in [Section 3.2. Behavior of the GUI](#3.2. Behavior of the GUI). You can play your program against [this program](https://michaelxing.com/UltimateTTT/v3/) by running both programs and letting one program play first and the other second, then mimicking each program's play on the other program's user interface. Your program should be able to win fairly consistently against the other program's first two levels. To see what your program does when it loses, play against the other program at its highest level. The best way to play a game to a draw is to open your program in a second instance of Visual Studio and run the program against itself (just be sure to close one instance of Visual Studio before making any edits).
 
